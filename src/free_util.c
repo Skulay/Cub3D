@@ -1,32 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube.h                                             :+:      :+:    :+:   */
+/*   free_util.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/19 15:17:57 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/19 15:17:57 by alehamad         ###   ########.fr       */
+/*   Created: 2026/04/19 15:46:06 by alehamad          #+#    #+#             */
+/*   Updated: 2026/04/19 15:46:06 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE_H
-#define CUBE_H
-
-#include <unistd.h>
-
-
-
-// GROSSE STRUCT CA MERE, 3H A CODER CA T PAS PRET 
-struct s_player
-{
-    int x;
-    int y;
-};
-
-
-
-
-
-
-#endif
+// toutes les fonction free global reutilisable partout
+// sinon faire 1 fichier pour un free complexe exemple struct

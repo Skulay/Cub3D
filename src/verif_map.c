@@ -1,32 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube.h                                             :+:      :+:    :+:   */
+/*   verif_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/19 15:17:57 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/19 15:17:57 by alehamad         ###   ########.fr       */
+/*   Created: 2026/04/19 15:44:37 by alehamad          #+#    #+#             */
+/*   Updated: 2026/04/19 15:44:37 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE_H
-#define CUBE_H
-
-#include <unistd.h>
-
-
-
-// GROSSE STRUCT CA MERE, 3H A CODER CA T PAS PRET 
-struct s_player
-{
-    int x;
-    int y;
-};
-
-
-
-
-
-
-#endif
+// ici c'est le fichier de base pour le parsing de la map 
+// qui aura la fonction de dispatcher ca dans l'ensemble du parsing
