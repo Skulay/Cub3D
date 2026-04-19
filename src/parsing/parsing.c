@@ -1,42 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube.h                                             :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/19 15:17:57 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/19 15:17:57 by alehamad         ###   ########.fr       */
+/*   Created: 2026/04/19 22:00:50 by alehamad          #+#    #+#             */
+/*   Updated: 2026/04/19 22:00:50 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE_H
-#define CUBE_H
-
-#include <unistd.h>
-
-
-
-struct s_arg
+int parsing(char *file)
 {
-    char *NO;
-    char *SO;
-    char *WE;
-    char *EA;
-    char *F;
-    char *C;
-
-};
-
-struct s_player
-{
-    int x;
-    int y;
-};
-
-
-
-
-
-
-#endif
+    //ouvrir le fichier, lire le fichier, tester si la map est valide
+    //stocker les infos dans un struct 
+ 
+}
