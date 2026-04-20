@@ -1,42 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube.h                                             :+:      :+:    :+:   */
+/*   parse_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/19 15:17:57 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/19 15:17:57 by alehamad         ###   ########.fr       */
+/*   Created: 2026/04/20 07:30:34 by alehamad          #+#    #+#             */
+/*   Updated: 2026/04/20 07:30:34 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE_H
-#define CUBE_H
+#include "cube.h"
 
-#include <unistd.h>
-#include <stdlib.h>
-
-struct s_arg
+int    is_colors(char *line)
 {
-    char *NO;
-    char *SO;
-    char *WE;
-    char *EA;
-    char *F;
-    char *C;
-    char **map;
+    if (ft_strncmp(line, "F ", 2) == 0)
+        return (1);
+    else if (ft_strncmp(line, "C ", 2) == 0)
+        return (1);
+    return (0);
+}
 
-}        t_arg;
-
-struct s_player
-{
-    int x;
-    int y;
-};
-
-
-
-
-
-
-#endif
+int parse_color(line);

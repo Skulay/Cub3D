@@ -10,5 +10,5 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// ici c'est le fichier de base pour le parsing de la map 
-// qui aura la fonction de dispatcher ca dans l'ensemble du parsing
+// ici c'est pour verifier la map stocker dans la structure flood fill ect
+#include "cube.h"

@@ -10,7 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cube.h"
+
 int main(int ac, char **av)
 {
+    t_arg data;
+
+    data = init_arg(void);
+    
+    if (parsing(av[1]))
+        return (1);
+    
+
     
 }

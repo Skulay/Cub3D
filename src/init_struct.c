@@ -1,42 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube.h                                             :+:      :+:    :+:   */
+/*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/19 15:17:57 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/19 15:17:57 by alehamad         ###   ########.fr       */
+/*   Created: 2026/04/20 07:13:55 by alehamad          #+#    #+#             */
+/*   Updated: 2026/04/20 07:13:55 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE_H
-#define CUBE_H
+#include "cube.h"
 
-#include <unistd.h>
-#include <stdlib.h>
-
-struct s_arg
+t_arg   *init_arg(void)
 {
-    char *NO;
-    char *SO;
-    char *WE;
-    char *EA;
-    char *F;
-    char *C;
-    char **map;
+    t_arg   data;
 
-}        t_arg;
-
-struct s_player
-{
-    int x;
-    int y;
-};
-
-
-
-
-
-
-#endif
+    data = malloc(sizeof(t_arg));
+    if (!data)
+        return (NULL);
+    data->NO = NULL;
+    data->SO = NULL;
+    data->WE = NULL;
+    data->EA = NULL;
+    data->F = NULL;
+    data->C = NULL;
+    data->map = NULL;
+    return (data);
+}

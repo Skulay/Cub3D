@@ -1,42 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube.h                                             :+:      :+:    :+:   */
+/*   parse_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/19 15:17:57 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/19 15:17:57 by alehamad         ###   ########.fr       */
+/*   Created: 2026/04/20 07:30:08 by alehamad          #+#    #+#             */
+/*   Updated: 2026/04/20 07:30:08 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE_H
-#define CUBE_H
+#include "cube.h"
 
-#include <unistd.h>
-#include <stdlib.h>
-
-struct s_arg
+int    is_texture(char *line)
 {
-    char *NO;
-    char *SO;
-    char *WE;
-    char *EA;
-    char *F;
-    char *C;
-    char **map;
+    if (ft_strncmp(line, "NO ", 3) == 0)
+        return (1);
+    else if (ft_strncmp(line, "SO ", 3) == 0)
+        return (1);
+    else if (ft_strncmp(line, "WE ", 3) == 0)
+        return (1);
+    else if (ft_strncmp(line, "EA ", 3) == 0)
+        return (1);
+    return (0);
+}
 
-}        t_arg;
-
-struct s_player
-{
-    int x;
-    int y;
-};
-
-
-
-
-
-
-#endif
+int parse_texture(line);

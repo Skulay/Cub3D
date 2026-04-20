@@ -1,43 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_util.c                                        :+:      :+:    :+:   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/19 15:46:06 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/19 15:46:06 by alehamad         ###   ########.fr       */
+/*   Created: 2026/04/20 07:30:54 by alehamad          #+#    #+#             */
+/*   Updated: 2026/04/20 07:30:54 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void    free_tab(char **tab)
+int char_map_line(char c)
+{
+    if (c == '0' || c == '1')
+        return (1);
+    if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+        return (1);
+    if (c == ' ')
+        return (1);
+    return (0);
+}
+
+int    is_map_line(char *line)
 {
     int i;
+    int len;
 
     i = 0;
-    while (tab[i])
+    len = ft_strlen(line);
+    while (i < len)
     {
-        free(tab[i]);
+        if (!char_map_line(line[i]))
+            return (0);
         i++;
     }
-    free(tab);
+    return (1);
 }
 
-void    free_arg(t_arg data)
-{
-    if (data->NO)
-        free(data->NO);
-    if (data->SO)
-        free(data->SO);
-    if (data->WE)
-        free(data->WE);
-    if (data->EA)
-        free(data->EA);
-    if (data->F)
-        free(data->F);
-    if (data->C)
-        free(data->C);
-    free(data)
-}
+int add_to_map(line);
