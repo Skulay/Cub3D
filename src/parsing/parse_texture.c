@@ -14,15 +14,26 @@
 
 int    is_texture(char *line)
 {
-    if (ft_strncmp(line, "NO ", 3) == 0)
-        return (1);
-    else if (ft_strncmp(line, "SO ", 3) == 0)
-        return (1);
-    else if (ft_strncmp(line, "WE ", 3) == 0)
-        return (1);
-    else if (ft_strncmp(line, "EA ", 3) == 0)
-        return (1);
-    return (0);
+	if (ft_strncmp(line, "NO ", 3) == 0)
+		return (1);
+	else if (ft_strncmp(line, "SO ", 3) == 0)
+		return (1);
+	else if (ft_strncmp(line, "WE ", 3) == 0)
+		return (1);
+	else if (ft_strncmp(line, "EA ", 3) == 0)
+		return (1);
+	return (0);
 }
 
-int parse_texture(line);
+int parse_texture(line, data)
+{
+		int     i;
+	int     len;
+	char    *str;
+
+
+	i = 3;
+	len = len_path(line);
+
+
+}

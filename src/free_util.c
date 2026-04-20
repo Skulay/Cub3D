@@ -14,30 +14,26 @@
 
 void    free_tab(char **tab)
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (tab[i])
-    {
-        free(tab[i]);
-        i++;
-    }
-    free(tab);
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }
 
 void    free_arg(t_arg data)
 {
-    if (data->NO)
-        free(data->NO);
-    if (data->SO)
-        free(data->SO);
-    if (data->WE)
-        free(data->WE);
-    if (data->EA)
-        free(data->EA);
-    if (data->F)
-        free(data->F);
-    if (data->C)
-        free(data->C);
-    free(data)
+	if (data->NO)
+		free(data->NO);
+	if (data->SO)
+		free(data->SO);
+	if (data->WE)
+		free(data->WE);
+	if (data->EA)
+		free(data->EA);
+	free(data)
 }

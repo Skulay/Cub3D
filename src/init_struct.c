@@ -14,17 +14,19 @@
 
 t_arg   *init_arg(void)
 {
-    t_arg   data;
+	t_arg   *data;
 
-    data = malloc(sizeof(t_arg));
-    if (!data)
-        return (NULL);
-    data->NO = NULL;
-    data->SO = NULL;
-    data->WE = NULL;
-    data->EA = NULL;
-    data->F = NULL;
-    data->C = NULL;
-    data->map = NULL;
-    return (data);
+	data = malloc(sizeof(t_arg));
+	if (!data)
+		return (NULL);
+	data->NO = NULL;
+	data->SO = NULL;
+	data->WE = NULL;
+	data->EA = NULL;
+	data->map = NULL;
+	ft_memset(data->f_color, 0, sizeof(int) * 3);
+	ft_memset(data->c_color, 0, sizeof(int) * 3);
+	data->f_defined = 0;
+	data->c_defined = 0;
+	return (data);
 }

@@ -22,9 +22,12 @@ struct s_arg
     char *SO;
     char *WE;
     char *EA;
-    char *F;
-    char *C;
     char **map;
+
+    int f_color[3];
+    int c_color[3];
+    int f_defined;
+    int c_defined;
 
 }        t_arg;
 
