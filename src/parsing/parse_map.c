@@ -12,7 +12,7 @@
 
 #include "cube.h"
 
-int char_map_line(char c)
+static int char_map_line(char c)
 {
 	if (c == '0' || c == '1')
 		return (1);
@@ -39,4 +39,19 @@ int    is_map_line(char *line)
 	return (1);
 }
 
-int add_to_map(line, data);
+int add_to_map(char *line, t_arg *data)
+{
+	if (data->map_size >= MAX_MAP_SIZE)
+	{
+		ft_printf("Erreur: la carte est pleine.\n");
+		return (0);
+	}
+	data->map[data->map_size] = ft_strdup(line);
+	if (!data->map[data->map_size])
+	{
+		ft_printf("Erreur d'allocation mémoire.\n");
+		return (0);
+	}
+	data->map_size++;
+	return (1);
+}
