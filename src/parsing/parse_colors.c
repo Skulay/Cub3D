@@ -14,9 +14,6 @@
 
 int	is_color(char *line)
 {
-	int i;
-
-	i = 0;
 	if (ft_strncmp(line, "F ", 2) == 0)
 		return (1);
 	else if (ft_strncmp(line, "C ", 2) == 0)
@@ -62,7 +59,7 @@ static int	add_rgb(char *line, int *i, int *rgb)
 	return (1);
 }
 
-int	parse_color(char *line, t_data *data)
+int	parse_color(char *line, t_arg *data)
 {
 	int	i;
 	int	rgb[3];
@@ -89,5 +86,3 @@ int	parse_color(char *line, t_data *data)
 	}
 	return (1);
 }
-
-F 123,123,123

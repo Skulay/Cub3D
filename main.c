@@ -12,15 +12,34 @@
 
 #include "cube.h"
 
+void print_data(t_arg *data)
+{
+    ft_putstr_fd(data->NO, 1);
+    write(1, "\n", 1);
+    ft_putstr_fd(data->SO, 1);
+    write(1, "\n", 1);
+    ft_putstr_fd(data->WE, 1);
+    write(1, "\n", 1);
+    ft_putstr_fd(data->EA, 1);
+    write(1, "\n", 1);
+
+    int i = 0;
+    while (i < 3)
+    {
+        printf("F -> %i | C -> %i\n", data->f_color[i], data->c_color[i]);
+        i++;
+    }
+}
+
 int main(int ac, char **av)
 {
-    t_arg data;
+    t_arg *data;
+    (void)ac;
 
-    data = init_arg(void);
+    data = init_arg();
     
-    if (parsing(av[1]))
-        return (1);
-    
-
-    
+    parsing(av[1], data);
+    print_data(data);
+    return (0);
+ 
 }

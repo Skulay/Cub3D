@@ -12,7 +12,7 @@
 
 #include "cube.h"
 
-t_arg   *init_arg(void)
+t_arg	*init_arg(void)
 {
 	t_arg   *data;
 

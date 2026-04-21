@@ -1,36 +1,41 @@
 NAME = cub3d
-CC = cc
-CFLAGS = -Wall -Wextra -Werror # -O3 -flto -ffast-math -march=native -pipe
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -g -Iinclude
+LIBFT_DIR = libft
+LIBFT = $(LIBFT_DIR)/libft.a
+SRC_DIR = src
+INC_DIR = include
 
-SRCS = main.c 
+SRCS = main.c \
+       $(SRC_DIR)/free_util.c \
+       $(SRC_DIR)/init_struct.c \
+       $(SRC_DIR)/parsing/parse_colors.c \
+       $(SRC_DIR)/parsing/parse_texture.c \
+       $(SRC_DIR)/parsing/parsing.c \
+       $(SRC_DIR)/parsing/verif_map.c
+
 OBJS = $(SRCS:.c=.o)
 
-MLX_DIR = minilibx-linux
-MLX_REPO = https://github.com/42paris/minilibx-linux
+INCLUDES = -I$(INC_DIR) -I$(LIBFT_DIR)
 
 all: $(NAME)
 
-$(NAME): $(MLX_DIR) $(OBJS)
-	make -C ./libft
-	make -C ./$(MLX_DIR)
-	$(CC) $(CFLAGS) $(OBJS) \
-		-L./libft -lft \
-		-L./$(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm -lz \
-		-o $(NAME)
+$(LIBFT):
+	@make -C $(LIBFT_DIR)
 
-$(MLX_DIR):
-	git clone $(MLX_REPO) $(MLX_DIR)
+$(SRC_DIR)/%.o: $(SRC_DIR)/%.c
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-%.o: %.c
-	$(CC) $(CFLAGS) -I./$(MLX_DIR) -c $< -o $@
+$(NAME): $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
 clean:
-	rm -f $(OBJS)
-	make -C ./libft clean
+	@rm -f $(OBJS)  # Supprimer tous les objets générés dans le répertoire src
+	@make clean -C $(LIBFT_DIR)
 
 fclean: clean
-	rm -f $(NAME)
-	make -C ./libft fclean
+	@rm -f $(NAME)
+	@make fclean -C $(LIBFT_DIR)
 
 re: fclean all
 

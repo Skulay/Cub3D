@@ -27,11 +27,11 @@ int	is_texture(char *line)
 	return (0);
 }
 
-int is_valid(char *line)
+static int is_valid(char *line)
 {
 	int i;
 
-	I = 3;
+	i = 3;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
 	if (line[i] == '\0' || (line[i] != '.' && line[i] != '/'))
@@ -49,36 +49,37 @@ int is_valid(char *line)
 	return (1);
 }
 
-int	add_texture(char *line, t_arg *data)
+static int add_texture(char *line, t_arg *data)
 {
-	char	*texture_path;
+    char *texture_path;
 
-	if (!line)
-		return (0);
-	if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ')
-		texture_path = &line[3];
-	else if (line[0] == 'S' && line[1] == 'O' && line[2] == ' ')
-		texture_path = &line[3];
-	else if (line[0] == 'W' && line[1] == 'E' && line[2] == ' ')
-		texture_path = &line[3];
-	else if (line[0] == 'E' && line[1] == 'A' && line[2] == ' ')
-		texture_path = &line[3];
-	else
-		return (0);
-	if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ' && !data->NO)
-		data->NO = texture_path;
-	else if (line[0] == 'S' && line[1] == 'O' && line[2] == ' ' && !data->SO)
-		data->SO = texture_path;
-	else if (line[0] == 'W' && line[1] == 'E' && line[2] == ' ' && !data->WE)
-		data->WE = texture_path;
-	else if (line[0] == 'E' && line[1] == 'A' && line[2] == ' ' && !data->EA)
-		data->EA = texture_path;
-	return (1);
+    if (!line)
+        return (0);
+    texture_path = &line[3];
+    char *dup_texture_path = ft_strdup(texture_path);
+    if (!dup_texture_path)
+        return (0);
+    while (*dup_texture_path == ' ' || *dup_texture_path == '\t')
+        dup_texture_path++;
+    if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ' && !data->NO)
+        data->NO = dup_texture_path;
+    else if (line[0] == 'S' && line[1] == 'O' && line[2] == ' ' && !data->SO)
+        data->SO = dup_texture_path;
+    else if (line[0] == 'W' && line[1] == 'E' && line[2] == ' ' && !data->WE)
+        data->WE = dup_texture_path;
+    else if (line[0] == 'E' && line[1] == 'A' && line[2] == ' ' && !data->EA)
+        data->EA = dup_texture_path;
+    else
+    {
+        free(dup_texture_path);
+        return (0);
+    }
+    return (1);
 }
 
 int	parse_texture(char *line, t_arg *data)
 {
-	if (!is_texture(line) || || !is_valid(line))
+	if (!is_texture(line) || !is_valid(line))
 		return (0);
 	add_texture(line, data);
 	return (1);

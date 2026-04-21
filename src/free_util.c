@@ -25,7 +25,7 @@ void    free_tab(char **tab)
 	free(tab);
 }
 
-void    free_arg(t_arg data)
+void    free_arg(t_arg *data)
 {
 	if (data->NO)
 		free(data->NO);
@@ -35,5 +35,5 @@ void    free_arg(t_arg data)
 		free(data->WE);
 	if (data->EA)
 		free(data->EA);
-	free(data)
+	free(data);
 }
