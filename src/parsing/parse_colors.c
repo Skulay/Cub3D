@@ -12,6 +12,18 @@
 
 #include "cube.h"
 
+int	is_color(char *line)
+{
+	int i;
+
+	i = 0;
+	if (ft_strncmp(line, "F ", 2) == 0)
+		return (1);
+	else if (ft_strncmp(line, "C ", 2) == 0)
+		return (1);	
+	return (0);
+}
+
 static int	get_nbr(char *str, int *i)
 {
 	int	nb;
@@ -35,11 +47,13 @@ static int	get_nbr(char *str, int *i)
 static int	add_rgb(char *line, int *i, int *rgb)
 {
 	rgb[0] = get_nbr(line, i);
-	if (rgb[0] == -1 || line[(*i)++] != ',')
+	if (rgb[0] == -1 || line[*i] != ',')
 		return (0);
+	(*i)++;
 	rgb[1] = get_nbr(line, i);
-	if (rgb[1] == -1 || line[(*i)++] != ',')
+	if (rgb[1] == -1 || line[*i] != ',')
 		return (0);
+	(*i)++;
 	rgb[2] = get_nbr(line, i);
 	if (rgb[2] == -1)
 		return (0);
@@ -63,10 +77,16 @@ int	parse_color(char *line, t_data *data)
 		return (0);
 	if (!add_rgb(line, &i, rgb))
 		return (0);
-	if (line[0] == 'F')
+	if (line[0] == 'F' && data->f_defined == 0)
+	{
 		ft_memcpy(data->f_color, rgb, sizeof(int) * 3);
-	else
+		data->f_defined = 1;
+	}
+	else if (line[0] == 'C' && data->c_defined == 0)
+	{
 		ft_memcpy(data->c_color, rgb, sizeof(int) * 3);
+		data->c_defined = 1;
+	}
 	return (1);
 }
 

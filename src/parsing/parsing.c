@@ -12,18 +12,6 @@
 
 #include "cube.h"
 
-int	is_color(char *line)
-{
-	int i;
-
-	i = 0;
-	if (ft_strncmp(line, "F ", 2))
-		return (1);
-	else if (ft_strncmp(line, "C ", 2))
-		return (1);	
-	return (0);
-}
-
 static int	is_only_spaces(char *line)
 {
 	int	i;
@@ -40,22 +28,47 @@ static int	is_only_spaces(char *line)
 	return (1);
 }
 
-static void	remove_nl(char *line)
+static void remove_nl(char *line)
 {
-	int	i;
+    int	i;
 
 	i = 0;
-	if (!line)
-		return ;
-	while (line[i])
-	{
-		if (line[i] == '\n')
-		{
-			line[i] = '\0';
-			return ;
-		}
-		i++;
-	}
+    if (!line || line[0] == '\0')
+        return ;
+    while (line[i])
+    {
+        if (line[i] == '\n')
+        {
+            line[i] = '\0';
+            return ;
+        }
+        i++;
+    }
+}
+
+// int all_set(t_arg *data)
+// {
+// 	if (data->NO == NULL)
+// 		return (0);
+// 	if (data->SO == NULL)
+// 		return (0);
+// 	if (data->WE == NULL)
+// 		return (0);
+// 	if (data->EA == NULL)
+// 		return (0);
+// 	if (data->map == NULL)
+// 		return (0);
+// 	if (data->f_defined == 0)
+// 		return (0);
+// 	if (data->c_defined == 0)
+// 		return (0);
+// 	return (1);
+// }
+
+int all_set(t_arg *data)
+{
+    return (data->NO && data->SO && data->WE && data->EA &&
+            data->map && data->f_defined && data->c_defined);
 }
 
 int	parsing(char *file, t_arg *data)
@@ -65,7 +78,10 @@ int	parsing(char *file, t_arg *data)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
+	{
+		perror("Error opening file");
 		return (1);
+	}
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -81,6 +97,11 @@ int	parsing(char *file, t_arg *data)
 		}
 		free(line);
 		line = get_next_line(fd);
+	}
+	if (!all_set(data))
+	{
+		close(fd);
+		return (1);
 	}
 	close(fd);
 	return (0);

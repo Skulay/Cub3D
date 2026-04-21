@@ -23,6 +23,9 @@ Bonus
     souris
 
 
+1 -> Du coup premiere etape parsing + afficher avec l'aide d'une fonction debug tyout ce qu'on a stocker et gerer les edge case du parsing directement
+
+
 
     penser a creer des dossier dans le dossier src pour poas avoir tout les fichier qui se melange
     au besoin add des fonction basique dans la libft ou les modifier pour les utiliser

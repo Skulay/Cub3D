@@ -12,28 +12,74 @@
 
 #include "cube.h"
 
-int    is_texture(char *line)
+int	is_texture(char *line)
 {
-	if (ft_strncmp(line, "NO ", 3) == 0)
-		return (1);
-	else if (ft_strncmp(line, "SO ", 3) == 0)
-		return (1);
-	else if (ft_strncmp(line, "WE ", 3) == 0)
-		return (1);
-	else if (ft_strncmp(line, "EA ", 3) == 0)
-		return (1);
+	const char	*textures[] = {"NO ", "SO ", "WE ", "EA "};
+	int			i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (ft_strncmp(line, textures[i], 3) == 0)
+			return (1);
+		i++;
+	}
 	return (0);
 }
 
-int parse_texture(line, data)
+int is_valid(char *line)
 {
-		int     i;
-	int     len;
-	char    *str;
+	int i;
 
+	I = 3;
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	if (line[i] == '\0' || (line[i] != '.' && line[i] != '/'))
+		return (0);
+	if (line[i] == '.' && line[i + 1] == '/')
+		i += 2;
+	if (line[i] == '/')
+		i++;
+	while (line[i] != '\0')
+	{
+		if (line[i] == ' ' || line[i] == '\t')
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
-	i = 3;
-	len = len_path(line);
+int	add_texture(char *line, t_arg *data)
+{
+	char	*texture_path;
 
+	if (!line)
+		return (0);
+	if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ')
+		texture_path = &line[3];
+	else if (line[0] == 'S' && line[1] == 'O' && line[2] == ' ')
+		texture_path = &line[3];
+	else if (line[0] == 'W' && line[1] == 'E' && line[2] == ' ')
+		texture_path = &line[3];
+	else if (line[0] == 'E' && line[1] == 'A' && line[2] == ' ')
+		texture_path = &line[3];
+	else
+		return (0);
+	if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ' && !data->NO)
+		data->NO = texture_path;
+	else if (line[0] == 'S' && line[1] == 'O' && line[2] == ' ' && !data->SO)
+		data->SO = texture_path;
+	else if (line[0] == 'W' && line[1] == 'E' && line[2] == ' ' && !data->WE)
+		data->WE = texture_path;
+	else if (line[0] == 'E' && line[1] == 'A' && line[2] == ' ' && !data->EA)
+		data->EA = texture_path;
+	return (1);
+}
 
+int	parse_texture(char *line, t_arg *data)
+{
+	if (!is_texture(line) || || !is_valid(line))
+		return (0);
+	add_texture(line, data);
+	return (1);
 }
