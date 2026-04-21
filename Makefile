@@ -1,10 +1,12 @@
 NAME = cub3d
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -Iinclude
-LIBFT_DIR = libft
-LIBFT = $(LIBFT_DIR)/libft.a
-SRC_DIR = src
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -g
 INC_DIR = include
+SRC_DIR = src
+
+LIBFT_DIR = libft
+MLX_DIR = minilibx-linux
+MLX_REPO = https://github.com/42Paris/minilibx-linux.git
 
 SRCS = main.c \
        $(SRC_DIR)/free_util.c \
@@ -12,30 +14,36 @@ SRCS = main.c \
        $(SRC_DIR)/parsing/parse_colors.c \
        $(SRC_DIR)/parsing/parse_texture.c \
        $(SRC_DIR)/parsing/parsing.c \
-       $(SRC_DIR)/parsing/verif_map.c
+       $(SRC_DIR)/parsing/verif_map.c \
+       $(SRC_DIR)/video/init.c
 
 OBJS = $(SRCS:.c=.o)
 
-INCLUDES = -I$(INC_DIR) -I$(LIBFT_DIR)
-
 all: $(NAME)
 
-$(LIBFT):
-	@make -C $(LIBFT_DIR)
+$(NAME): $(MLX_DIR) $(OBJS)
+	make -C ./$(LIBFT_DIR)
+	make -C ./$(MLX_DIR)
+	$(CC) $(CFLAGS) $(OBJS) \
+		-L./$(LIBFT_DIR) -lft \
+		-L./$(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm -lz \
+		-o $(NAME)
 
-$(SRC_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+$(MLX_DIR):
+	git clone $(MLX_REPO) $(MLX_DIR)
 
-$(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+%.o: %.c
+	$(CC) $(CFLAGS) -I$(INC_DIR) -I./$(LIBFT_DIR) -I./$(MLX_DIR) -c $< -o $@
 
 clean:
-	@rm -f $(OBJS)  # Supprimer tous les objets générés dans le répertoire src
-	@make clean -C $(LIBFT_DIR)
+	rm -f $(OBJS)
+	make -C ./$(LIBFT_DIR) clean
+	make -C ./$(MLX_DIR) clean
 
 fclean: clean
-	@rm -f $(NAME)
-	@make fclean -C $(LIBFT_DIR)
+	rm -f $(NAME)
+	make -C ./$(LIBFT_DIR) fclean
+	rm -rf $(MLX_DIR)
 
 re: fclean all
 

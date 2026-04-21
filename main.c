@@ -31,15 +31,17 @@ void print_data(t_arg *data)
     }
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-    t_arg *data;
-    (void)ac;
+	t_cube cube;
+	// t_arg *data;
+	(void)ac;
+	(void)av; // pour compil
+	// data = init_arg();
 
-    data = init_arg();
-    
-    parsing(av[1], data);
-    print_data(data);
-    return (0);
- 
+	// parsing(av[1], data);
+	// print_data(data);
+	cube_init(&cube);
+	mlx_loop(cube.mlx);
+	return (0);
 }
