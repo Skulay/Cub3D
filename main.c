@@ -56,7 +56,8 @@ int	main(int ac, char **av)
 
 	data = init_arg();
 
-	parsing(av[1], data);
+	if (!parsing(av[1], data))
+        return (1);
 	print_data(data);
 	// cube_init(&cube);
 	// mlx_loop(cube.mlx);

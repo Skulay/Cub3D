@@ -42,11 +42,11 @@ static void remove_nl(char *line)
     }
 }
 
-// static int all_set(t_arg *data)
-// {
-//     return (data->NO && data->SO && data->WE && data->EA &&
-//             data->map && data->f_defined && data->c_defined);
-// }
+static int all_set(t_arg *data)
+{
+    return (data->NO && data->SO && data->WE && data->EA &&
+            data->map && data->f_defined && data->c_defined);
+}
 
 static void parsing_helper(char *line, t_arg *data)
 {
@@ -63,22 +63,53 @@ int	parsing(char *file, t_arg *data)
 {
 	int		fd;
 	char	*line;
+	int		map_started;
 
+	map_started = 0;
 	fd = open(file, O_RDONLY);
 	line = get_next_line(fd);
 	while (line)
 	{
 		remove_nl(line);
+		if (map_started && is_only_spaces(line))
+		{
+			ft_printf("Error: map non continue (ligne vide)\n");
+			free(line);
+			close(fd);
+			return (0);
+		}
 		if (!is_only_spaces(line))
-			parsing_helper(line, data);
+		{
+			if (!map_started)
+			{
+				if (is_map_line(line))
+				{
+					map_started = 1;
+					add_to_map(line, data);
+				}
+				else
+					parsing_helper(line, data);
+			}
+			else
+			{
+				if (!is_map_line(line))
+				{
+					ft_printf("Error: map non continue\n");
+					free(line);
+					close(fd);
+					return (0);
+				}
+				add_to_map(line, data);
+			}
+		}
 		free(line);
 		line = get_next_line(fd);
 	}
-	// if (!all_set(data))
-	// {
-	// 	close(fd);
-	// 	return (1);
-	// }
+	if (!all_set(data))
+	{
+		close(fd);
+		return (0);
+	}
 	close(fd);
-	return (0);
+	return (1);
 }
