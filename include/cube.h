@@ -11,6 +11,16 @@
 # define WIDTH 800
 # define MAX_MAP_SIZE 1000
 
+typedef struct s_check
+{
+	int	no;
+	int	so;
+	int	we;
+	int	ea;
+	int	f;
+	int	c;
+}	t_check;
+
 typedef struct s_arg
 {
 	char *NO;
@@ -23,8 +33,7 @@ typedef struct s_arg
 	int f_defined;
 	int c_defined;
 	int map_size;
-
-} t_arg;
+}	t_arg;
 
 typedef struct s_cube
 {
@@ -32,7 +41,11 @@ typedef struct s_cube
 	void *image;
 	void *window;
 	void *buffer;
-} t_cube;
+}	t_cube;
+
+//check cub file
+int pre_parse(char *file);
+void init_check(t_check *c);
 
 // parsing
 int	parsing(char *file, t_arg *data);
@@ -47,7 +60,9 @@ int add_to_map(char *line, t_arg *data);
 t_arg	*init_arg(void);
 
 // window
-
 void	cube_init(t_cube *cube);
+
+//error msg
+void	err_cub_format(void);
 
 #endif

@@ -65,11 +65,6 @@ int	parsing(char *file, t_arg *data)
 	char	*line;
 
 	fd = open(file, O_RDONLY);
-	if (fd < 0)
-	{
-		perror("Error opening file");
-		return (1);
-	}
 	line = get_next_line(fd);
 	while (line)
 	{

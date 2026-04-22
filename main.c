@@ -48,6 +48,12 @@ int	main(int ac, char **av)
 	t_arg *data;
 	(void)ac;
 	// (void)av; // pour compil
+
+    if (!pre_parse(av[1]))
+    {
+        return (1);
+    }
+
 	data = init_arg();
 
 	parsing(av[1], data);

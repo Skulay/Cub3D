@@ -12,6 +12,16 @@
 
 #include "cube.h"
 
+void init_check(t_check *c)
+{
+	c->no = 0;
+	c->so = 0;
+	c->we = 0;
+	c->ea = 0;
+	c->f = 0;
+	c->c = 0;
+}
+
 t_arg	*init_arg(void)
 {
 	t_arg   *data;
