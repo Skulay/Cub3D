@@ -12,6 +12,14 @@
 
 #include "cube.h"
 
+void	free_close(char *line, int fd)
+{
+	ft_printf("Error: map non continue (ligne vide)\n");
+	if (line != NULL)
+		free(line);
+	close(fd);
+}
+
 void    free_tab(char **tab)
 {
 	int i;

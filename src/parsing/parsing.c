@@ -72,12 +72,7 @@ int	parsing(char *file, t_arg *data)
 	{
 		remove_nl(line);
 		if (map_started && is_only_spaces(line))
-		{
-			ft_printf("Error: map non continue (ligne vide)\n");
-			free(line);
-			close(fd);
-			return (0);
-		}
+			return (free_close(line, fd), 0);
 		if (!is_only_spaces(line))
 		{
 			if (!map_started)
@@ -93,23 +88,15 @@ int	parsing(char *file, t_arg *data)
 			else
 			{
 				if (!is_map_line(line))
-				{
-					ft_printf("Error: map non continue\n");
-					free(line);
-					close(fd);
-					return (0);
-				}
+					return (free_close(line, fd), 0);
 				add_to_map(line, data);
 			}
 		}
 		free(line);
 		line = get_next_line(fd);
 	}
-	if (!all_set(data))
-	{
-		close(fd);
-		return (0);
-	}
 	close(fd);
+	if (!all_set(data))
+		return (0);
 	return (1);
 }

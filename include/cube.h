@@ -63,7 +63,8 @@ t_arg	*init_arg(void);
 // window
 void	cube_init(t_cube *cube);
 
-//error msg
+//free & error msg
 void	err_cub_format(void);
+void	free_close(char *line, int fd);
 
 #endif
