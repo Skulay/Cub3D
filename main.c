@@ -14,32 +14,32 @@
 
 void print_data(t_arg *data)
 {
-    write(1, "\n", 1);
-    write(1, "\n", 1);
-    write(1, "\n", 1);
-    ft_putstr_fd(data->NO, 1);
-    write(1, "\n", 1);
-    ft_putstr_fd(data->SO, 1);
-    write(1, "\n", 1);
-    ft_putstr_fd(data->WE, 1);
-    write(1, "\n", 1);
-    ft_putstr_fd(data->EA, 1);
-    write(1, "\n", 1);
+	write(1, "\n", 1);
+	write(1, "\n", 1);
+	write(1, "\n", 1);
+	ft_putstr_fd(data->no, 1);
+	write(1, "\n", 1);
+	ft_putstr_fd(data->so, 1);
+	write(1, "\n", 1);
+	ft_putstr_fd(data->we, 1);
+	write(1, "\n", 1);
+	ft_putstr_fd(data->ea, 1);
+	write(1, "\n", 1);
 
-    int i = 0;
-    while (i < 3)
-    {
-        printf("F -> %i | C -> %i\n", data->f_color[i], data->c_color[i]);
-        i++;
-    }
+	int i = 0;
+	while (i < 3)
+	{
+		printf("F -> %i | C -> %i\n", data->f_color[i], data->c_color[i]);
+		i++;
+	}
 
-    int j = 0;
-    while (data->map[j])
-    {
-        ft_putstr_fd(data->map[j], 1);
-        write(1, "\n", 1);
-        j++;
-    }
+	int j = 0;
+	while (data->map[j])
+	{
+		ft_putstr_fd(data->map[j], 1);
+		write(1, "\n", 1);
+		j++;
+	}
 }
 
 int	main(int ac, char **av)
@@ -49,15 +49,13 @@ int	main(int ac, char **av)
 	(void)ac;
 	// (void)av; // pour compil
 
-    if (!pre_parse(av[1]))
-    {
-        return (1);
-    }
-
+	if (!pre_parse(av[1]))
+	{
+		return (1);
+	}
 	data = init_arg();
-
 	if (!parsing(av[1], data))
-        return (1);
+		return (1);
 	print_data(data);
 	// cube_init(&cube);
 	// mlx_loop(cube.mlx);

@@ -38,7 +38,7 @@ static char	*skip_spaces(char *line)
 
 static int	is_not_empty_line(char *line)
 {
-	char *str;
+	char	*str;
 
 	str = skip_spaces(line);
 	if (*str == '\0' || *str == '\n')
@@ -48,7 +48,8 @@ static int	is_not_empty_line(char *line)
 
 static int check_id(t_check *c)
 {
-	if (c->no == 1 && c->so == 1 && c->we == 1 && c->ea == 1 && c->f == 1 && c->c == 1)
+	if (c->no == 1 && c->so == 1 && c->we == 1 
+		&& c->ea == 1 && c->f == 1 && c->c == 1)
 		return (1);
 	return (0);
 }
@@ -102,7 +103,7 @@ static int	check_cub_file(int fd, t_check *c)
 	return (check_id(c) && map_started);
 }
 
-int pre_parse(char *file)
+int	pre_parse(char *file)
 {
 	int		fd;
 	t_check	c;

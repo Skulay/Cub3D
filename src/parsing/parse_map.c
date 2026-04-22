@@ -12,7 +12,7 @@
 
 #include "cube.h"
 
-static int char_map_line(char c)
+static int	char_map_line(char c)
 {
 	if (c == '0' || c == '1')
 		return (1);
@@ -23,10 +23,10 @@ static int char_map_line(char c)
 	return (0);
 }
 
-int    is_map_line(char *line)
+int	is_map_line(char *line)
 {
-	int i;
-	int len;
+	int	i;
+	int	len;
 
 	i = 0;
 	len = ft_strlen(line);
@@ -39,7 +39,7 @@ int    is_map_line(char *line)
 	return (1);
 }
 
-int add_to_map(char *line, t_arg *data)
+int	add_to_map(char *line, t_arg *data)
 {
 	if (data->map_size >= MAX_MAP_SIZE)
 	{

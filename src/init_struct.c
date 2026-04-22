@@ -12,7 +12,7 @@
 
 #include "cube.h"
 
-void init_check(t_check *c)
+void	init_check(t_check *c)
 {
 	c->no = 0;
 	c->so = 0;
@@ -24,15 +24,15 @@ void init_check(t_check *c)
 
 t_arg	*init_arg(void)
 {
-	t_arg   *data;
+	t_arg	*data;
 
 	data = malloc(sizeof(t_arg));
 	if (!data)
 		return (NULL);
-	data->NO = NULL;
-	data->SO = NULL;
-	data->WE = NULL;
-	data->EA = NULL;
+	data->no = NULL;
+	data->so = NULL;
+	data->we = NULL;
+	data->ea = NULL;
 	ft_memset(data->f_color, 0, sizeof(int) * 3);
 	ft_memset(data->c_color, 0, sizeof(int) * 3);
 	data->f_defined = 0;

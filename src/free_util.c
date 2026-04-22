@@ -20,9 +20,9 @@ void	free_close(char *line, int fd)
 	close(fd);
 }
 
-void    free_tab(char **tab)
+void	free_tab(char **tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tab[i])
@@ -33,15 +33,15 @@ void    free_tab(char **tab)
 	free(tab);
 }
 
-void    free_arg(t_arg *data)
+void	free_arg(t_arg *data)
 {
-	if (data->NO)
-		free(data->NO);
-	if (data->SO)
-		free(data->SO);
-	if (data->WE)
-		free(data->WE);
-	if (data->EA)
-		free(data->EA);
+	if (data->no)
+		free(data->no);
+	if (data->so)
+		free(data->so);
+	if (data->we)
+		free(data->we);
+	if (data->ea)
+		free(data->ea);
 	free(data);
 }

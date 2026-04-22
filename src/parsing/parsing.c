@@ -44,7 +44,7 @@ static void remove_nl(char *line)
 
 static int all_set(t_arg *data)
 {
-    return (data->NO && data->SO && data->WE && data->EA &&
+    return (data->no && data->so && data->we && data->ea &&
             data->map && data->f_defined && data->c_defined);
 }
 
