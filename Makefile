@@ -13,8 +13,11 @@ SRCS = main.c \
        $(SRC_DIR)/init_struct.c \
        $(SRC_DIR)/parsing/parse_colors.c \
        $(SRC_DIR)/parsing/parse_texture.c \
+	   $(SRC_DIR)/parsing/parse_map.c \
        $(SRC_DIR)/parsing/parsing.c \
        $(SRC_DIR)/parsing/verif_map.c \
+	   $(SRC_DIR)/check_cub_file/check_cub.c \
+	   $(SRC_DIR)/msg_error/msg_error.c \
        $(SRC_DIR)/video/init.c
 
 OBJS = $(SRCS:.c=.o)

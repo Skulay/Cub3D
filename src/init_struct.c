@@ -12,6 +12,16 @@
 
 #include "cube.h"
 
+void init_check(t_check *c)
+{
+	c->no = 0;
+	c->so = 0;
+	c->we = 0;
+	c->ea = 0;
+	c->f = 0;
+	c->c = 0;
+}
+
 t_arg	*init_arg(void)
 {
 	t_arg   *data;
@@ -23,10 +33,16 @@ t_arg	*init_arg(void)
 	data->SO = NULL;
 	data->WE = NULL;
 	data->EA = NULL;
-	data->map = NULL;
 	ft_memset(data->f_color, 0, sizeof(int) * 3);
 	ft_memset(data->c_color, 0, sizeof(int) * 3);
 	data->f_defined = 0;
 	data->c_defined = 0;
+	data->map_size = 0;
+	data->map = malloc(MAX_MAP_SIZE * sizeof(char *));
+	if (!data->map)
+	{
+		free(data);
+		return (NULL);
+	}
 	return (data);
 }

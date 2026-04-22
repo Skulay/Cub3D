@@ -48,31 +48,29 @@ static void remove_nl(char *line)
 //             data->map && data->f_defined && data->c_defined);
 // }
 
+static void parsing_helper(char *line, t_arg *data)
+{
+	printf("Ligne lue: %s\n", line);
+	if (is_texture(line))
+		parse_texture(line, data);
+	else if (is_color(line))
+		parse_color(line, data);
+	else if (is_map_line(line))
+		add_to_map(line, data);
+}
+
 int	parsing(char *file, t_arg *data)
 {
 	int		fd;
 	char	*line;
 
 	fd = open(file, O_RDONLY);
-	if (fd < 0)
-	{
-		perror("Error opening file");
-		return (1);
-	}
 	line = get_next_line(fd);
 	while (line)
 	{
+		remove_nl(line);
 		if (!is_only_spaces(line))
-		{
-			remove_nl(line);
-			printf("Ligne lue: %s\n", line);
-			if (is_texture(line))
-				parse_texture(line, data);
-			else if (is_color(line))
-				parse_color(line, data);
-			// else if (is_map_line(line))
-			// 	add_to_map(line, data);
-		}
+			parsing_helper(line, data);
 		free(line);
 		line = get_next_line(fd);
 	}
