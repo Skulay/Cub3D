@@ -55,6 +55,7 @@ int is_map_line(char *line);
 int	parse_texture(char *line, t_arg *data);
 int	parse_color(char *line, t_arg *data);
 int add_to_map(char *line, t_arg *data);
+int	validate_map(t_arg *data);
 
 // init
 t_arg	*init_arg(void);

@@ -18,7 +18,8 @@ SRCS = main.c \
        $(SRC_DIR)/parsing/verif_map.c \
 	   $(SRC_DIR)/check_cub_file/check_cub.c \
 	   $(SRC_DIR)/msg_error/msg_error.c \
-       $(SRC_DIR)/video/init.c
+       $(SRC_DIR)/video/init.c \
+	   $(SRC_DIR)/parsing/check_map.c
 
 OBJS = $(SRCS:.c=.o)
 
