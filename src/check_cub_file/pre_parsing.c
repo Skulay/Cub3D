@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 13:20:18 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/24 14:07:55 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/04/24 14:36:26 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,25 +35,16 @@ int	check_cub_file(int fd, t_check *c)
 			if (!check_id(c))
 			{
 				if (check_map_line(line))
-				{
-					finish_reading(line, fd);
-					return (0);
-				}
+					return (finish_reading(line, fd), 0);
 				if (!is_id_valid(skip_spaces(line), c))
-				{
-					finish_reading(line, fd);
-					return (0);
-				}
+					return (finish_reading(line, fd), 0);
 			}
 			else if (!map_started)
 			{
 				if (check_map_line(line))
 					map_started = 1;
 				else
-				{
-					finish_reading(line, fd);
-					return (0);
-				}
+					return (finish_reading(line, fd), 0);
 			}
 		}
 		free(line);
