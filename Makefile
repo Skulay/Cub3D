@@ -1,6 +1,7 @@
 NAME = cub3d
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
+
 INC_DIR = include
 SRC_DIR = src
 
@@ -9,19 +10,22 @@ MLX_DIR = minilibx-linux
 MLX_REPO = https://github.com/42Paris/minilibx-linux.git
 
 SRCS = main.c \
-		$(SRC_DIR)/free_util.c \
-		$(SRC_DIR)/init_struct.c \
-		$(SRC_DIR)/parsing/parse_colors.c \
-		$(SRC_DIR)/parsing/parse_texture.c \
-		$(SRC_DIR)/parsing/parse_map.c \
-		$(SRC_DIR)/parsing/parsing.c \
-		$(SRC_DIR)/check_cub_file/check_cub.c \
-		$(SRC_DIR)/check_cub_file/pre_parsing.c \
-		$(SRC_DIR)/msg_error/msg_error.c \
-		$(SRC_DIR)/video/init.c \
-		$(SRC_DIR)/parsing/check_map.c
+	$(SRC_DIR)/free_util.c \
+	$(SRC_DIR)/init_struct.c \
+	$(SRC_DIR)/parsing/parse_colors.c \
+	$(SRC_DIR)/parsing/parse_texture.c \
+	$(SRC_DIR)/parsing/parse_map.c \
+	$(SRC_DIR)/parsing/parsing.c \
+	$(SRC_DIR)/check_cub_file/check_cub.c \
+	$(SRC_DIR)/check_cub_file/pre_parsing.c \
+	$(SRC_DIR)/msg_error/msg_error.c \
+	$(SRC_DIR)/video/init.c \
+	$(SRC_DIR)/parsing/check_map.c
 
 OBJS = $(SRCS:.c=.o)
+DEPS = $(OBJS:.o=.d)
+
+-include $(DEPS)
 
 all: $(NAME)
 
@@ -40,7 +44,7 @@ $(MLX_DIR):
 	$(CC) $(CFLAGS) -I$(INC_DIR) -I./$(LIBFT_DIR) -I./$(MLX_DIR) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(DEPS)
 	make -C ./$(LIBFT_DIR) clean
 	make -C ./$(MLX_DIR) clean
 
