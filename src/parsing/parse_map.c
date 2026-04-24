@@ -43,15 +43,13 @@ int	add_to_map(char *line, t_arg *data)
 {
 	if (data->map_size >= MAX_MAP_SIZE)
 	{
-		ft_printf("Erreur: la carte est pleine.\n");
+		ft_printf("Error: map is full\n");
 		return (0);
 	}
 	data->map[data->map_size] = ft_strdup(line);
 	if (!data->map[data->map_size])
-	{
-		ft_printf("Erreur d'allocation mémoire.\n");
 		return (0);
-	}
 	data->map_size++;
+	data->map[data->map_size] = NULL;
 	return (1);
 }

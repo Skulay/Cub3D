@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/07 07:19:38 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/07 07:19:38 by alehamad         ###   ########.fr       */
+/*   Created: 2026/04/24 13:15:42 by alehamad          #+#    #+#             */
+/*   Updated: 2026/04/24 13:15:42 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void print_data(t_arg *data)
+static void	print_data(t_arg *data)
 {
 	write(1, "\n", 1);
 	write(1, "\n", 1);
@@ -57,6 +57,7 @@ int	main(int ac, char **av)
 	if (!parsing(av[1], data))
 		return (1);
 	print_data(data);
+	free_arg(data);
 	// cube_init(&cube);
 	// mlx_loop(cube.mlx);
 	return (0);

@@ -58,6 +58,11 @@ typedef struct s_cube
 //check cub file
 int		pre_parse(char *file);
 void	init_check(t_check *c);
+int		is_id_valid(char *line, t_check *c);
+char	*skip_spaces(char *line);
+int		is_not_empty_line(char *line);
+int		check_id(t_check *c);
+int		check_map_line(char *line);
 
 // parsing
 int		parsing(char *file, t_arg *data);
@@ -76,6 +81,7 @@ t_arg	*init_arg(void);
 void	cube_init(t_cube *cube);
 
 //free & error msg
+void	free_arg(t_arg *data);
 void	err_cub_format(void);
 void	free_close(char *line, int fd);
 

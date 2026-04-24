@@ -22,6 +22,13 @@ void	init_check(t_check *c)
 	c->c = 0;
 }
 
+void	init_color(int *tab)
+{
+	tab[0] = -1;
+	tab[1] = -1;
+	tab[2] = -1;
+}
+
 t_arg	*init_arg(void)
 {
 	t_arg	*data;
@@ -33,8 +40,8 @@ t_arg	*init_arg(void)
 	data->so = NULL;
 	data->we = NULL;
 	data->ea = NULL;
-	ft_memset(data->f_color, 0, sizeof(int) * 3);
-	ft_memset(data->c_color, 0, sizeof(int) * 3);
+	init_color(data->f_color);
+	init_color(data->c_color);
 	data->f_defined = 0;
 	data->c_defined = 0;
 	data->map_size = 0;

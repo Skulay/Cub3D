@@ -43,5 +43,7 @@ void	free_arg(t_arg *data)
 		free(data->we);
 	if (data->ea)
 		free(data->ea);
+	if (data->map)
+		free_tab(data->map);
 	free(data);
 }

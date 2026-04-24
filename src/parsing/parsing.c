@@ -28,27 +28,28 @@ static int	is_only_spaces(char *line)
 	return (1);
 }
 
-static void remove_nl(char *line)
+static void	remove_nl(char *line)
 {
-    int i = 0;
-    if (!line || line[0] == '\0')
-        return;
+	int	i;
 
-    while (line[i])
-    {
-        if (line[i] == '\n' || line[i] == '\r' || line[i] < 32)
-            line[i] = '\0';
-        i++;
-    }
+	i = 0;
+	if (!line || line[0] == '\0')
+		return ;
+	while (line[i])
+	{
+		if (line[i] == '\n' || line[i] == '\r' || line[i] < 32)
+			line[i] = '\0';
+		i++;
+	}
 }
 
-static int all_set(t_arg *data)
+static int	all_set(t_arg *data)
 {
-    return (data->no && data->so && data->we && data->ea &&
-            data->map && data->f_defined && data->c_defined);
+	return (data->no && data->so && data->we && data->ea
+		&& data->map && data->f_defined && data->c_defined);
 }
 
-static void parsing_helper(char *line, t_arg *data)
+static void	parsing_helper(char *line, t_arg *data)
 {
 	printf("Ligne lue: %s\n", line);
 	if (is_texture(line))
