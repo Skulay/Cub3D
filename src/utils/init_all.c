@@ -12,9 +12,30 @@
 
 #include "cube.h"
 
-void	init_textures(game, arg)
+static int	load_texture(t_mlx *mlx, t_texture *tex, char *path)
 {
-	
+	tex->img = mlx_xpm_file_to_image(mlx->mlx, path,
+			&tex->width, &tex->height);
+	if (!tex->img)
+	{
+		printf("Error:\nTexture not found: %s\n", path);
+		return (0);
+	}
+	tex->addr = mlx_get_data_addr(tex->img,
+			&tex->bpp, &tex->line_len, &tex->endian);
+	return (1);
+}
+
+void	init_textures(t_game *game, t_arg *arg)
+{
+	if (!load_texture(&game->mlx, &game->tex.north, arg->no))
+		clean_exit_game(game);
+	if (load_texture(&game->mlx, &game->tex.south, arg->so))
+		clean_exit_game(game);
+	if (load_texture(&game->mlx, &game->tex.west, arg->we))
+		clean_exit_game(game);
+	if (load_texture(&game->mlx, &game->tex.east, arg->ea))
+		clean_exit_game(game);
 }
 
 void	init_mlx(t_game *game)

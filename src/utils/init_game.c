@@ -43,9 +43,75 @@ void	init_map(t_game *game, t_arg *arg)
 	game->map.map_width = max;
 }
 
+static void	set_player_dir(t_game *game, char c)
+{
+	if (c == 'N')
+	{
+		game->player.dir_x = 0;
+		game->player.dir_y = -1;
+		game->player.plan_x = 0.66; //c'est le fov ici mdr 120 tu coco
+		game->player.plan_y = 0;
+	}
+	else if (c == 'S')
+	{
+		game->player.dir_x = 0;
+		game->player.dir_y = 1;
+		game->player.plan_x = -0.66;
+		game->player.plan_y = 0;
+	}
+	else if (c == 'E')
+	{
+		game->player.dir_x = 1;
+		game->player.dir_y = 0;
+		game->player.plan_x = 0;
+		game->player.plan_y = 0.66;
+	}
+	else if (c == 'W')
+	{
+		game->player.dir_x = -1;
+		game->player.dir_y = 0;
+		game->player.plan_x = 0;
+		game->player.plan_y = -0.66;
+	}
+}
+
 void	init_player(t_game *game)
 {
+	int		i;
+	int		j;
+	char	c;
+	int		count;
 
+	i = 0;
+	count = 0;
+	while (game->map.map[i])
+	{
+		j = 0;
+		while (game->map.map[i][j])
+		{
+			c = game->map.map[i][j];
+			if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+			{
+				if(count == 0)
+				{
+					game->player.pos_x = j + 0.5;
+					game->player.pos_y = i + 0.5;
+					set_direction(game, c);
+					game->map.map[i][j] = '0';
+				}
+				count++;
+			}
+			j++;
+		}
+		i++;
+	}
+	if (count != 1)
+	{
+		ft_putstrfd("Error:\nOnly one player is accepted\n")
+		clean_exit_game(game);
+	}
+	ft_putstrfd("Error:\nPlayer not found\n")
+	clean_exit_game(game);
 }
 
 void	init_game(t_game *game, t_arg *arg)

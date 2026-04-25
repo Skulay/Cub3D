@@ -93,6 +93,24 @@ typedef struct s_player
 	double	plan_y;
 }	t_player;
 
+typedef struct s_texture
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		height;
+}	t_texture;
+
+typedef struct s_tex
+{
+	t_texture	north;
+	t_texture	south;
+	t_texture	west;
+	t_texture	east;
+}	t_tex;
 
 //check cub file
 int		pre_parse(char *file);
