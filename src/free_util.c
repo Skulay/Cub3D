@@ -12,6 +12,11 @@
 
 #include "cube.h"
 
+void	clean_exit_game(t_game *game)
+{
+
+}
+
 void	free_close(char *line, int fd)
 {
 	ft_printf("Error: map non continue (ligne vide)\n");

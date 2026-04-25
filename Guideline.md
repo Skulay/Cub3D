@@ -32,4 +32,27 @@ Bonus
     regarder le projet fracto'ol pour recuperer le fonctionnement de la minilibx
 
     je pense que pour les bonus la minimap est interessante surtout dans l'idee du projet et pour le debug
-    
+
+
+
+
+
+
+            PARSE
+            ↓
+            t_arg
+
+            INIT
+            ↓
+            mlx_init
+            ↓
+            window
+            ↓
+            image
+            ↓
+            game state (player/map/colors)
+            ↓
+            textures
+            ↓
+            render loop
+                

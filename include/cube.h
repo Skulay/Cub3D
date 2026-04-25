@@ -23,6 +23,7 @@
 # define WIDTH 800
 # define MAX_MAP_SIZE 1000
 
+// Parsing
 typedef struct s_check
 {
 	int	no;
@@ -47,13 +48,51 @@ typedef struct s_arg
 	int		map_size;
 }	t_arg;
 
-typedef struct s_cube
+//RENDER
+typedef struct s_game
+{
+	t_player	player;
+	t_mlx		mlx;
+	t_img		img;
+	t_tex		tex;
+	t_map		map;
+	t_ray		ray;
+	int			floor_color;
+	int			ceiling_color;
+}	t_game;
+
+typedef struct s_mlx
 {
 	void	*mlx;
-	void	*image;
-	void	*window;
-	void	*buffer;
-}	t_cube;
+	void	*win;
+}	t_mlx;
+
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_img;
+
+typedef struct s_map
+{
+	char	**map;
+	int		map_width;
+	int		map_height;
+}	t_map;
+
+typedef struct s_player
+{
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plan_x;
+	double	plan_y;
+}	t_player;
+
 
 //check cub file
 int		pre_parse(char *file);
