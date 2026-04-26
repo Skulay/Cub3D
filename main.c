@@ -45,7 +45,7 @@ static void	print_data(t_arg *data)
 int	main(int ac, char **av)
 {
 	t_arg *data;
-	t_game *game;
+	t_game game;
 
 	if (ac != 2)
 		return (1);
@@ -55,8 +55,7 @@ int	main(int ac, char **av)
 	if (!parsing(av[1], data))
 		return (1);
 	print_data(data);
-	game = malloc(sizeof(t_game));
-	init_all(game, data);
+	init_all(&game, data);
 	free_arg(data);
 	return (0);
 }
