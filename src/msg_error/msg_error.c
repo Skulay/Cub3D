@@ -21,3 +21,9 @@ void	err_cub_format(void)
 	ft_putstr_fd("- Duplicates: Not allowed\n", 2);
 	ft_putstr_fd("- Map: Must be the very last element\n", 2);
 }
+
+void	err_msg(char *msg)
+{
+	ft_putendl_fd("Error:", 2);
+	ft_putendl_fd(msg, 2);
+}

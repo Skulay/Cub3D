@@ -44,21 +44,18 @@ static void	print_data(t_arg *data)
 
 int	main(int ac, char **av)
 {
-	// t_cube cube;
 	t_arg *data;
-	(void)ac;
-	// (void)av; // pour compil
+	t_game game;
 
-	if (!pre_parse(av[1]))
-	{
+	if (ac != 2)
 		return (1);
-	}
+	if (!pre_parse(av[1]))
+		return (1);
 	data = init_arg();
 	if (!parsing(av[1], data))
 		return (1);
 	print_data(data);
+	init_all(&game, data);
 	free_arg(data);
-	// cube_init(&cube);
-	// mlx_loop(cube.mlx);
 	return (0);
 }

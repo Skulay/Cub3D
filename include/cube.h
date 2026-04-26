@@ -49,17 +49,6 @@ typedef struct s_arg
 }	t_arg;
 
 //RENDER
-typedef struct s_game
-{
-	t_player	player;
-	t_mlx		mlx;
-	t_img		img;
-	t_tex		tex;
-	t_map		map;
-	t_ray		ray;
-	int			floor_color;
-	int			ceiling_color;
-}	t_game;
 
 typedef struct s_mlx
 {
@@ -112,6 +101,18 @@ typedef struct s_tex
 	t_texture	east;
 }	t_tex;
 
+typedef struct s_game
+{
+	t_player	player;
+	t_mlx		mlx;
+	t_img		img;
+	t_tex		tex;
+	t_map		map;
+	//t_ray		ray;
+	int			floor_color;
+	int			ceiling_color;
+}	t_game;
+
 //check cub file
 int		pre_parse(char *file);
 void	init_check(t_check *c);
@@ -133,11 +134,14 @@ int		validate_map(t_arg *data);
 
 // init
 t_arg	*init_arg(void);
+void	init_game(t_game *game, t_arg *arg);
+void	init_all(t_game *game, t_arg *arg);
 
-// window
-void	cube_init(t_cube *cube);
+
 
 //free & error msg
+void	clean_exit_game(t_game *game);
+
 void	free_arg(t_arg *data);
 void	err_cub_format(void);
 void	free_close(char *line, int fd);

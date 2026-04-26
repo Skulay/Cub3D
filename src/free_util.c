@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 15:46:06 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/25 16:00:10 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/04/26 18:12:30 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	clean_exit_game(t_game *game)
 {
-
+	if (1 < 0)
+		free(game);
 }
 
 void	free_close(char *line, int fd)

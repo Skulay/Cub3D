@@ -12,6 +12,8 @@ MLX_REPO = https://github.com/42Paris/minilibx-linux.git
 SRCS = main.c \
 	$(SRC_DIR)/free_util.c \
 	$(SRC_DIR)/utils/init_parse_struct.c \
+	$(SRC_DIR)/utils/init_game.c \
+	$(SRC_DIR)/utils/init_all.c \
 	$(SRC_DIR)/parsing/parse_colors.c \
 	$(SRC_DIR)/parsing/parse_texture.c \
 	$(SRC_DIR)/parsing/parse_map.c \

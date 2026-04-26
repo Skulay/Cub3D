@@ -17,13 +17,13 @@ static int	rgb_to_int(int rgb[3])
 	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
 }
 
-void	init_colors(t_game *game, t_arg *arg)
+static void	init_colors(t_game *game, t_arg *arg)
 {
 	game->floor_color = rgb_to_int(arg->f_color);
 	game->ceiling_color = rgb_to_int(arg->c_color);
 }
 
-void	init_map(t_game *game, t_arg *arg)
+static void	init_map(t_game *game, t_arg *arg)
 {
 	int	i;
 	int len;
@@ -43,13 +43,13 @@ void	init_map(t_game *game, t_arg *arg)
 	game->map.map_width = max;
 }
 
-static void	set_player_dir(t_game *game, char c)
+static void	set_direction(t_game *game, char c)
 {
 	if (c == 'N')
 	{
 		game->player.dir_x = 0;
 		game->player.dir_y = -1;
-		game->player.plan_x = 0.66; //c'est le fov ici mdr 120 tu coco
+		game->player.plan_x = 0.66;
 		game->player.plan_y = 0;
 	}
 	else if (c == 'S')
@@ -75,7 +75,7 @@ static void	set_player_dir(t_game *game, char c)
 	}
 }
 
-void	init_player(t_game *game)
+static void	init_player(t_game *game)
 {
 	int		i;
 	int		j;
@@ -107,10 +107,12 @@ void	init_player(t_game *game)
 	}
 	if (count != 1)
 	{
-		ft_putstr_fd("Error:\nOnly one player is accepted\n")
+		ft_putstr_fd("Error:\nOnly one player is accepted\n", 2);
 		clean_exit_game(game);
 	}
-	ft_putstr_fd("Error:\nPlayer not found\n")
+	else if (count == 1)
+		return ;
+	ft_putstr_fd("Error:\nPlayer not found\n", 2);
 	clean_exit_game(game);
 }
 
