@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_util.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 15:46:06 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/19 15:46:06 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/04/26 17:19:16 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	free_close(char *line, int fd)
 {
-	ft_printf("Error: map non continue (ligne vide)\n");
+	ft_putstr_fd("Error: The map needs to be contiguous and cannot be separated\n",
+		STDERR_FILENO);
 	if (line != NULL)
 		free(line);
 	close(fd);
