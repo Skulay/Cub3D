@@ -26,16 +26,17 @@ static void	init_colors(t_game *game, t_arg *arg)
 static void	init_map(t_game *game, t_arg *arg)
 {
 	int	i;
-	int len;
-	int max;
+	int	len;
+	int	max;
 
 	i = 0;
 	max = 0;
 	game->map.map = arg->map;
+	arg->map = NULL;
 	game->map.map_height = arg->map_size;
-	while (arg->map[i])
+	while (game->map.map[i])
 	{
-		len = ft_strlen(arg->map[i]);
+		len = ft_strlen(game->map.map[i]);
 		if (len > max)
 			max = len;
 		i++;

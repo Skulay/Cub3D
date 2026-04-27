@@ -145,5 +145,7 @@ void	err_msg(char *msg);
 void	free_arg(t_arg *data);
 void	err_cub_format(void);
 void	free_close(char *line, int fd);
+void	free_game(t_game *game);
+void	free_tab(char **tab);
 
 #endif

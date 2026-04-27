@@ -57,5 +57,6 @@ int	main(int ac, char **av)
 	print_data(data);
 	init_all(&game, data);
 	free_arg(data);
+	free_game(&game);
 	return (0);
 }
