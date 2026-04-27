@@ -107,12 +107,12 @@ static void	init_player(t_game *game)
 	}
 	if (count != 1)
 	{
-		ft_putstr_fd("Error:\nOnly one player is accepted\n", 2);
+		err_msg("Only one player is accepted");
 		clean_exit_game(game);
 	}
 	else if (count == 1)
 		return ;
-	ft_putstr_fd("Error:\nPlayer not found\n", 2);
+	err_msg("Player not found");
 	clean_exit_game(game);
 }
 

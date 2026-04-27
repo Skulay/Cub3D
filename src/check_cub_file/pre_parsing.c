@@ -63,7 +63,7 @@ int	pre_parse(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
-		perror("Error opening file");
+		perror("Error\nopening file");
 		return (1);
 	}
 	if (!check_cub_file(fd, &c))
@@ -72,7 +72,6 @@ int	pre_parse(char *file)
 		err_cub_format();
 		return (0);
 	}
-	ft_putstr_fd("SUCCES PRE PARSE\n", 1);
 	close(fd);
 	return (1);
 }

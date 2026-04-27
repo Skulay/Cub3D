@@ -141,7 +141,7 @@ void	init_all(t_game *game, t_arg *arg);
 
 //free & error msg
 void	clean_exit_game(t_game *game);
-
+void	err_msg(char *msg);
 void	free_arg(t_arg *data);
 void	err_cub_format(void);
 void	free_close(char *line, int fd);

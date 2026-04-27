@@ -18,7 +18,7 @@ static int	load_texture(t_mlx *mlx, t_texture *tex, char *path)
 			&tex->width, &tex->height);
 	if (!tex->img)
 	{
-		printf("Error:\nTexture not found: %s\n", path);
+		ft_printf("Error\nTexture not found: %s\n", path);
 		return (0);
 	}
 	tex->addr = mlx_get_data_addr(tex->img,
