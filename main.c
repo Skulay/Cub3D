@@ -57,6 +57,10 @@ int	main(int ac, char **av)
 	print_data(data);
 	init_all(&game, data);
 	free_arg(data);
+	mlx_hook(game.mlx.win, 2, 1L << 0, key_handler, &game);
+	// mlx_hook(game.mlx.win, 4, 1L << 2, mouse_handler, game); pris de fractol mais a adapter pour fermer
+	mlx_hook(game.mlx.win, 17, 0, handle_close, &game);
+	mlx_loop(game.mlx.mlx);
 	free_game(&game);
 	return (0);
 }

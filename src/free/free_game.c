@@ -53,3 +53,9 @@ void free_game(t_game *game)
 	free_mlx(&game->img, &game->mlx);
 	free_map(&game->map);
 }
+
+int	handle_close(t_game *game)
+{
+	free_game(game);
+	exit(0);
+}

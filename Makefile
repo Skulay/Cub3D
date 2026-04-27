@@ -23,6 +23,7 @@ SRCS = main.c \
 	$(SRC_DIR)/msg_error/msg_error.c \
 	$(SRC_DIR)/video/init.c \
 	$(SRC_DIR)/free/free_game.c \
+	$(SRC_DIR)/hook/hook_input.c \
 	$(SRC_DIR)/parsing/check_map.c
 
 OBJS = $(SRCS:.c=.o)

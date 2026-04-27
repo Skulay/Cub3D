@@ -23,6 +23,14 @@
 # define WIDTH 800
 # define MAX_MAP_SIZE 1000
 
+# define ESC 65307
+# define LEFT 65361
+# define RIGHT 65363
+# define UP 65362
+# define DOWN 65364
+# define WHEELUP 4
+# define WHEELDOWN 5
+
 // Parsing
 typedef struct s_check
 {
@@ -137,7 +145,8 @@ t_arg	*init_arg(void);
 void	init_game(t_game *game, t_arg *arg);
 void	init_all(t_game *game, t_arg *arg);
 
-
+//hook
+int	key_handler(int keycode, t_game *game);
 
 //free & error msg
 void	clean_exit_game(t_game *game);
@@ -147,5 +156,6 @@ void	err_cub_format(void);
 void	free_close(char *line, int fd);
 void	free_game(t_game *game);
 void	free_tab(char **tab);
+int		handle_close(t_game *game);
 
 #endif
