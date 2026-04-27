@@ -93,7 +93,7 @@ static void	init_player(t_game *game)
 			c = game->map.map[i][j];
 			if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 			{
-				if(count == 0)
+				if (count == 0)
 				{
 					game->player.pos_x = j + 0.5;
 					game->player.pos_y = i + 0.5;

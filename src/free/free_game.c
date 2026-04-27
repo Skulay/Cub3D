@@ -12,7 +12,7 @@
 
 #include "cube.h"
 
-static void free_map(t_map *map)
+static void	free_map(t_map *map)
 {
 	if (map)
 		free_tab(map->map);
@@ -21,7 +21,7 @@ static void free_map(t_map *map)
 static void	free_mlx(t_img *img, t_mlx *mlx)
 {
 	if (!img || !mlx)
-		return;
+		return ;
 	if (img->img)
 		mlx_destroy_image(mlx->mlx, img->img);
 	if (mlx->win)
@@ -36,7 +36,7 @@ static void	free_mlx(t_img *img, t_mlx *mlx)
 static void	free_tex(t_tex *tex, t_mlx *mlx)
 {
 	if (!tex || !mlx)
-		return;
+		return ;
 	if (tex->north.img)
 		mlx_destroy_image(mlx->mlx, tex->north.img);
 	if (tex->south.img)
@@ -47,7 +47,7 @@ static void	free_tex(t_tex *tex, t_mlx *mlx)
 		mlx_destroy_image(mlx->mlx, tex->east.img);
 }
 
-void free_game(t_game *game)
+void	free_game(t_game *game)
 {
 	free_tex(&game->tex, &game->mlx);
 	free_mlx(&game->img, &game->mlx);

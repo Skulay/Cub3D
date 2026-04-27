@@ -12,7 +12,6 @@
 
 #include "cube.h"
 
-void ft_render(t_game *game)
+void	ft_render(t_game *game)
 {
-
 }

@@ -54,11 +54,11 @@ void	init_img(t_game *game)
 	if (!game->img.img)
 		clean_exit_game(game);
 	game->img.addr = mlx_get_data_addr(
-		game->img.img,
-		&game->img.bpp,
-		&game->img.line_len,
-		&game->img.endian
-	);
+			game->img.img,
+			&game->img.bpp,
+			&game->img.line_len,
+			&game->img.endian
+			);
 	if (!game->img.addr)
 		clean_exit_game(game);
 }
