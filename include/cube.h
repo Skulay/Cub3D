@@ -158,4 +158,7 @@ void	free_game(t_game *game);
 void	free_tab(char **tab);
 int		handle_close(t_game *game);
 
+//debug
+void	print_data(t_arg *data);
+
 #endif

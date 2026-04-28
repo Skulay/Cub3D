@@ -21,7 +21,7 @@ SRCS = main.c \
 	$(SRC_DIR)/check_cub_file/check_cub.c \
 	$(SRC_DIR)/check_cub_file/pre_parsing.c \
 	$(SRC_DIR)/msg_error/msg_error.c \
-	$(SRC_DIR)/video/init.c \
+	$(SRC_DIR)/debug/debug.c \
 	$(SRC_DIR)/free/free_game.c \
 	$(SRC_DIR)/hook/hook_input.c \
 	$(SRC_DIR)/parsing/check_map.c
