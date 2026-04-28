@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+#include <math.h>
 
 # define HEIGHT 800
 # define WIDTH 800
@@ -109,6 +110,27 @@ typedef struct s_tex
 	t_texture	east;
 }	t_tex;
 
+typedef struct s_ray
+{
+	double	camera_x;
+	double	raydir_x;
+	double	raydir_y;
+	int		map_x;
+	int		map_y;
+	double	sidedist_x;
+	double	sidedist_y;
+	double	deltadist_x;
+	double	deltadist_y;
+	double	perpwalldist;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+}	t_ray;
+
 typedef struct s_game
 {
 	t_player	player;
@@ -116,7 +138,7 @@ typedef struct s_game
 	t_img		img;
 	t_tex		tex;
 	t_map		map;
-	//t_ray		ray;
+	t_ray		ray;
 	int			floor_color;
 	int			ceiling_color;
 }	t_game;
@@ -160,5 +182,7 @@ int		handle_close(t_game *game);
 
 //debug
 void	print_data(t_arg *data);
+
+int		render_frame(t_game *game);
 
 #endif

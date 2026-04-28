@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 13:15:42 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/28 02:20:54 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/04/28 02:31:35 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	main(int ac, char **av)
 {
-	t_arg *data;
-	t_game game;
+	t_arg	*data;
+	t_game	game;
 
 	if (ac != 2)
 		return (1);
@@ -28,9 +28,8 @@ int	main(int ac, char **av)
 	init_all(&game, data);
 	free_arg(data);
 	mlx_hook(game.mlx.win, 2, 1L << 0, key_handler, &game);
-	// mlx_hook(game.mlx.win, 4, 1L << 2, mouse_handler, game); pris de fractol mais a adapter pour fermer
 	mlx_hook(game.mlx.win, 17, 0, handle_close, &game);
+	mlx_loop_hook(game.mlx.mlx, render_frame, &game);
 	mlx_loop(game.mlx.mlx);
-	free_game(&game);
 	return (0);
 }
