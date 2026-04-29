@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   pre_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 13:20:18 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/24 13:20:18 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/04/29 02:45:00 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+
+static void	finish_file(int fd, char *line)
+{
+	while (line != NULL)
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
+}
 
 int	check_cub_file(int fd, t_check *c)
 {
@@ -26,25 +35,16 @@ int	check_cub_file(int fd, t_check *c)
 			if (!check_id(c))
 			{
 				if (check_map_line(line))
-				{
-					free(line);
-					return (0);
-				}
+					return (finish_file(fd, line), 0);
 				if (!is_id_valid(skip_spaces(line), c))
-				{
-					free(line);
-					return (0);
-				}
+					return (finish_file(fd, line), 0);
 			}
 			else if (!map_started)
 			{
 				if (check_map_line(line))
 					map_started = 1;
 				else
-				{
-					free(line);
-					return (0);
-				}
+					return (finish_file(fd, line), 0);
 			}
 		}
 		free(line);
