@@ -51,7 +51,6 @@ static int	all_set(t_arg *data)
 
 static void	parsing_helper(char *line, t_arg *data)
 {
-	printf("Ligne lue: %s\n", line);
 	if (is_texture(line))
 		parse_texture(line, data);
 	else if (is_color(line))

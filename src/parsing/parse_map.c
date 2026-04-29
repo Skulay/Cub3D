@@ -43,7 +43,7 @@ int	add_to_map(char *line, t_arg *data)
 {
 	if (data->map_size >= MAX_MAP_SIZE)
 	{
-		ft_printf("Error: map is full\n");
+		err_msg("map is full");
 		return (0);
 	}
 	data->map[data->map_size] = ft_strdup(line);

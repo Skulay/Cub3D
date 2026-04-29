@@ -6,15 +6,15 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 13:20:18 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/24 14:36:26 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/04/29 02:45:00 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-static void	finish_reading(char *line, int fd)
+static void	finish_file(int fd, char *line)
 {
-	while (line)
+	while (line != NULL)
 	{
 		free(line);
 		line = get_next_line(fd);
@@ -35,16 +35,16 @@ int	check_cub_file(int fd, t_check *c)
 			if (!check_id(c))
 			{
 				if (check_map_line(line))
-					return (finish_reading(line, fd), 0);
+					return (finish_file(fd, line), 0);
 				if (!is_id_valid(skip_spaces(line), c))
-					return (finish_reading(line, fd), 0);
+					return (finish_file(fd, line), 0);
 			}
 			else if (!map_started)
 			{
 				if (check_map_line(line))
 					map_started = 1;
 				else
-					return (finish_reading(line, fd), 0);
+					return (finish_file(fd, line), 0);
 			}
 		}
 		free(line);
@@ -63,7 +63,7 @@ int	pre_parse(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
-		perror("Error opening file");
+		perror("Error\nopening file");
 		return (1);
 	}
 	if (!check_cub_file(fd, &c))
@@ -72,7 +72,6 @@ int	pre_parse(char *file)
 		err_cub_format();
 		return (0);
 	}
-	ft_putstr_fd("SUCCES PRE PARSE\n", 1);
 	close(fd);
 	return (1);
 }

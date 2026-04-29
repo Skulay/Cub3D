@@ -1,9 +1,9 @@
-NO ./n.xpm
-F 0,0,0
-SO ./s.xpm
+NO ./texture/north.xpm
+SO ./texture/south.xpm
 C 255,255,255
-WE ./w.xpm
-EA ./e.xpm
+WE ./texture/west.xpm
+EA ./texture/east.xpm
+F 0,0,0
 
 111111
 100001

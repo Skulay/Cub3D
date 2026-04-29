@@ -6,59 +6,30 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 13:15:42 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/24 13:15:42 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/04/28 02:31:35 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-static void	print_data(t_arg *data)
-{
-	write(1, "\n", 1);
-	write(1, "\n", 1);
-	write(1, "\n", 1);
-	ft_putstr_fd(data->no, 1);
-	write(1, "\n", 1);
-	ft_putstr_fd(data->so, 1);
-	write(1, "\n", 1);
-	ft_putstr_fd(data->we, 1);
-	write(1, "\n", 1);
-	ft_putstr_fd(data->ea, 1);
-	write(1, "\n", 1);
-
-	int i = 0;
-	while (i < 3)
-	{
-		printf("F -> %i | C -> %i\n", data->f_color[i], data->c_color[i]);
-		i++;
-	}
-
-	int j = 0;
-	while (data->map[j])
-	{
-		ft_putstr_fd(data->map[j], 1);
-		write(1, "\n", 1);
-		j++;
-	}
-}
-
 int	main(int ac, char **av)
 {
-	// t_cube cube;
-	t_arg *data;
-	(void)ac;
-	// (void)av; // pour compil
+	t_arg	*data;
+	t_game	game;
 
-	if (!pre_parse(av[1]))
-	{
+	if (ac != 2)
 		return (1);
-	}
+	if (!pre_parse(av[1]))
+		return (1);
 	data = init_arg();
 	if (!parsing(av[1], data))
 		return (1);
 	print_data(data);
+	init_all(&game, data);
 	free_arg(data);
-	// cube_init(&cube);
-	// mlx_loop(cube.mlx);
+	mlx_hook(game.mlx.win, 2, 1L << 0, key_handler, &game);
+	mlx_hook(game.mlx.win, 17, 0, handle_close, &game);
+	mlx_loop_hook(game.mlx.mlx, render_frame, &game);
+	mlx_loop(game.mlx.mlx);
 	return (0);
 }

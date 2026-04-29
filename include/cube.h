@@ -18,11 +18,21 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+#include <math.h>
 
 # define HEIGHT 800
 # define WIDTH 800
 # define MAX_MAP_SIZE 1000
 
+# define ESC 65307
+# define LEFT 65361
+# define RIGHT 65363
+# define UP 65362
+# define DOWN 65364
+# define WHEELUP 4
+# define WHEELDOWN 5
+
+// Parsing
 typedef struct s_check
 {
 	int	no;
@@ -47,13 +57,91 @@ typedef struct s_arg
 	int		map_size;
 }	t_arg;
 
-typedef struct s_cube
+//RENDER
+
+typedef struct s_mlx
 {
 	void	*mlx;
-	void	*image;
-	void	*window;
-	void	*buffer;
-}	t_cube;
+	void	*win;
+}	t_mlx;
+
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_img;
+
+typedef struct s_map
+{
+	char	**map;
+	int		map_width;
+	int		map_height;
+}	t_map;
+
+typedef struct s_player
+{
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plan_x;
+	double	plan_y;
+}	t_player;
+
+typedef struct s_texture
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		height;
+}	t_texture;
+
+typedef struct s_tex
+{
+	t_texture	north;
+	t_texture	south;
+	t_texture	west;
+	t_texture	east;
+}	t_tex;
+
+typedef struct s_ray
+{
+	double	camera_x;
+	double	raydir_x;
+	double	raydir_y;
+	int		map_x;
+	int		map_y;
+	double	sidedist_x;
+	double	sidedist_y;
+	double	deltadist_x;
+	double	deltadist_y;
+	double	perpwalldist;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+}	t_ray;
+
+typedef struct s_game
+{
+	t_player	player;
+	t_mlx		mlx;
+	t_img		img;
+	t_tex		tex;
+	t_map		map;
+	t_ray		ray;
+	int			floor_color;
+	int			ceiling_color;
+}	t_game;
 
 //check cub file
 int		pre_parse(char *file);
@@ -76,13 +164,27 @@ int		validate_map(t_arg *data);
 
 // init
 t_arg	*init_arg(void);
+void	init_game(t_game *game, t_arg *arg);
+void	init_all(t_game *game, t_arg *arg);
 
-// window
-void	cube_init(t_cube *cube);
+//hook
+int	key_handler(int keycode, t_game *game);
+void	rotate_right(t_player *p);
+void	rotate_left(t_player *p);
 
 //free & error msg
+void	clean_exit_game(t_game *game);
+void	err_msg(char *msg);
 void	free_arg(t_arg *data);
 void	err_cub_format(void);
 void	free_close(char *line, int fd);
+void	free_game(t_game *game);
+void	free_tab(char **tab);
+int		handle_close(t_game *game);
+
+//debug
+void	print_data(t_arg *data);
+
+int		render_frame(t_game *game);
 
 #endif
