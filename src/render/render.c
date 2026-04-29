@@ -46,7 +46,6 @@ void	init_step(t_game *g)
 		g->ray.sidedist_x = (g->ray.map_x + 1.0 - g->player.pos_x)
 			* g->ray.deltadist_x;
 	}
-
 	if (g->ray.raydir_y < 0)
 	{
 		g->ray.step_y = -1;
@@ -92,11 +91,9 @@ void	calc_wall(t_game *g)
 			+ (1 - g->ray.step_y) / 2) / g->ray.raydir_y;
 
 	g->ray.line_height = (int)(HEIGHT / g->ray.perpwalldist);
-
 	g->ray.draw_start = -g->ray.line_height / 2 + HEIGHT / 2;
 	if (g->ray.draw_start < 0)
 		g->ray.draw_start = 0;
-
 	g->ray.draw_end = g->ray.line_height / 2 + HEIGHT / 2;
 	if (g->ray.draw_end >= HEIGHT)
 		g->ray.draw_end = HEIGHT - 1;
@@ -110,6 +107,8 @@ void	draw_column(t_game *g, int x)
 	int			tex_x;
 	double		step;
 	double		tex_pos;
+	int			tex_y;
+	int			color;
 
 	y = 0;
 	if (g->ray.side == 0)
@@ -145,16 +144,11 @@ void	draw_column(t_game *g, int x)
 			put_pixel(&g->img, x, y, g->floor_color);
 		else
 		{
-			int tex_y;
-			int color;
-
 			tex_y = (int)tex_pos;
 			tex_pos += step;
-
 			color = *(int *)(tex->addr
 				+ (tex_y * tex->line_len
 				+ tex_x * (tex->bpp / 8)));
-
 			put_pixel(&g->img, x, y, color);
 		}
 		y++;

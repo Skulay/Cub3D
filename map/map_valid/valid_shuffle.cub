@@ -1,9 +1,9 @@
 F 220,100,0
 C 225,30,0
-NO ./tex/n.xpm
-EA ./tex/e.xpm
-SO ./tex/s.xpm
-WE ./tex/w.xpm
+NO ./texture/north.xpm
+SO ./texture/south.xpm
+WE ./texture/west.xpm
+EA ./texture/east.xpm
 
 11111
 10001
