@@ -16,6 +16,10 @@ int	key_handler(int keycode, t_game *game)
 {
 	if (keycode == ESC)
 		handle_close(game);
+	if (keycode == LEFT)
+		rotate_left(&game->player);
+	if (keycode == RIGHT)
+		rotate_right(&game->player);
 	//ft_render(game);
 	return (0);
 }
