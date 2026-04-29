@@ -169,6 +169,8 @@ void	init_all(t_game *game, t_arg *arg);
 
 //hook
 int	key_handler(int keycode, t_game *game);
+void	rotate_right(t_player *p);
+void	rotate_left(t_player *p);
 
 //free & error msg
 void	clean_exit_game(t_game *game);
