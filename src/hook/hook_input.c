@@ -20,6 +20,6 @@ int	key_handler(int keycode, t_game *game)
 		rotate_left(&game->player);
 	if (keycode == RIGHT)
 		rotate_right(&game->player);
-	//ft_render(game);
+	render_frame(game);
 	return (0);
 }
