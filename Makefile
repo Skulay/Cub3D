@@ -26,6 +26,7 @@ SRCS = main.c \
 	$(SRC_DIR)/free/free_game.c \
 	$(SRC_DIR)/hook/hook_input.c \
 	$(SRC_DIR)/hook/rotate.c \
+	$(SRC_DIR)/hook/move.c \
 	$(SRC_DIR)/parsing/check_map.c
 
 OBJS = $(SRCS:.c=.o)

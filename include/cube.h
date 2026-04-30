@@ -23,14 +23,15 @@
 # define HEIGHT 800
 # define WIDTH 800
 # define MAX_MAP_SIZE 1000
+# define MOVE_SPEED 0.05
 
 # define ESC 65307
 # define LEFT 65361
 # define RIGHT 65363
-# define UP 65362
-# define DOWN 65364
-# define WHEELUP 4
-# define WHEELDOWN 5
+# define W 119
+# define A 97
+# define S 115
+# define D 100
 
 // Parsing
 typedef struct s_check
@@ -168,9 +169,13 @@ void	init_game(t_game *game, t_arg *arg);
 void	init_all(t_game *game, t_arg *arg);
 
 //hook
-int	key_handler(int keycode, t_game *game);
+int		key_handler(int keycode, t_game *game);
 void	rotate_right(t_player *p);
 void	rotate_left(t_player *p);
+void	move_w(t_player *player, t_map *map);
+void	move_a(t_player *player, t_map *map);
+void	move_s(t_player *player, t_map *map);
+void	move_d(t_player *player, t_map *map);
 
 //free & error msg
 void	clean_exit_game(t_game *game);
