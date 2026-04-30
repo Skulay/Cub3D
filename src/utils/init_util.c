@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.c                                            :+:      :+:    :+:   */
+/*   init_util.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/28 02:19:02 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/28 02:19:02 by alehamad         ###   ########.fr       */
+/*   Created: 2026/04/30 13:54:29 by alehamad          #+#    #+#             */
+/*   Updated: 2026/04/30 13:54:29 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	print_data(t_arg *data)
+static int	rgb_to_int(int rgb[3])
 {
-	int	i;
+	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
+}
 
-	i = 0;
-	ft_putendl_fd(data->no, 1);
-	ft_putendl_fd(data->so, 1);
-	ft_putendl_fd(data->we, 1);
-	ft_putendl_fd(data->ea, 1);
-	while (i < 3)
-	{
-		printf("F -> %i | C -> %i\n", data->f_color[i], data->c_color[i]);
-		i++;
-	}
-	i = 0;
-	while (data->map[i])
-	{
-		ft_putendl_fd(data->map[i], 1);
-		i++;
-	}
+void	init_colors(t_game *game, t_arg *arg)
+{
+	game->floor_color = rgb_to_int(arg->f_color);
+	game->ceiling_color = rgb_to_int(arg->c_color);
 }

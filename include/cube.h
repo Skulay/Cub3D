@@ -18,7 +18,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-#include <math.h>
+# include <math.h>
 
 # define HEIGHT 800
 # define WIDTH 800
@@ -167,6 +167,9 @@ int		validate_map(t_arg *data);
 t_arg	*init_arg(void);
 void	init_game(t_game *game, t_arg *arg);
 void	init_all(t_game *game, t_arg *arg);
+void	set_direction(t_game *game, char c);
+void	init_colors(t_game *game, t_arg *arg);
+void	set_direction(t_game *game, char c);
 
 //hook
 int		key_handler(int keycode, t_game *game);
@@ -190,6 +193,7 @@ int		handle_close(t_game *game);
 //debug
 void	print_data(t_arg *data);
 
+//render
 int		render_frame(t_game *game);
 
 #endif

@@ -14,6 +14,8 @@ SRCS = main.c \
 	$(SRC_DIR)/utils/init_parse_struct.c \
 	$(SRC_DIR)/utils/init_game.c \
 	$(SRC_DIR)/utils/init_all.c \
+	$(SRC_DIR)/utils/init_util.c \
+	$(SRC_DIR)/utils/set_dir.c \
 	$(SRC_DIR)/parsing/parse_colors.c \
 	$(SRC_DIR)/parsing/parse_texture.c \
 	$(SRC_DIR)/parsing/parse_map.c \
