@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_util.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 15:46:06 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/30 14:02:25 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/05/01 16:45:42 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	clean_exit_game(t_game *game)
 {
-	if (1 < 0)
-		free(game);
+	free_game(game);
+	exit(1);
 }
 
 void	free_close(char *line, int fd)
