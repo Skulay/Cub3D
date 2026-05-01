@@ -10,7 +10,7 @@ MLX_DIR = minilibx-linux
 MLX_REPO = https://github.com/42Paris/minilibx-linux.git
 
 SRCS = main.c \
-	$(SRC_DIR)/free_util.c \
+	$(SRC_DIR)/utils/free_util.c \
 	$(SRC_DIR)/utils/init_parse_struct.c \
 	$(SRC_DIR)/utils/init_game.c \
 	$(SRC_DIR)/utils/init_all.c \
