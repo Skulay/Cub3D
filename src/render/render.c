@@ -76,6 +76,9 @@ void	dda(t_game *g)
 			g->ray.map_y += g->ray.step_y;
 			g->ray.side = 1;
 		}
+		if (g->ray.map_x < 0 || g->ray.map_x >= g->map.map_width
+			|| g->ray.map_y < 0 || g->ray.map_y >= g->map.map_height)
+			break;
 		if (g->map.map[g->ray.map_y][g->ray.map_x] == '1')
 			g->ray.hit = 1;
 	}

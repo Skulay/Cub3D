@@ -28,6 +28,6 @@ int	key_handler(int keycode, t_game *game)
 		move_s(&game->player, &game->map);
 	if (keycode == D)
 		move_d(&game->player, &game->map);
-	render_frame(game);
+	//render_frame(game);
 	return (0);
 }
