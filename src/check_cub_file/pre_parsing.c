@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pre_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 13:20:18 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/30 13:15:07 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/05/02 01:17:08 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	pre_parse(char *file)
 	if (fd < 0)
 	{
 		perror("Error\nopening file");
-		return (1);
+		return (0);
 	}
 	if (!check_cub_file(fd, &c))
 	{
