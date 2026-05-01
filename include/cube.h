@@ -181,7 +181,7 @@ void	move_s(t_player *player, t_map *map);
 void	move_d(t_player *player, t_map *map);
 
 //free & error msg
-void	clean_exit_game(t_game *game);
+void	clean_exit_game(t_game *game, t_arg *data);
 void	err_msg(char *msg);
 void	free_arg(t_arg *data);
 void	err_cub_format(void);

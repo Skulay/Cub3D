@@ -6,14 +6,16 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 15:46:06 by alehamad          #+#    #+#             */
-/*   Updated: 2026/05/01 16:55:39 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/05/02 01:41:26 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	clean_exit_game(t_game *game)
+void	clean_exit_game(t_game *game, t_arg *data)
 {
+	if (data)
+		free_arg(data);
 	free_game(game);
 	exit(1);
 }

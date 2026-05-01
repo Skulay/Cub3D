@@ -2,9 +2,12 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
 /*   Created: 2026/04/25 11:17:28 by alehamad          #+#    #+#             */
 /*   Updated: 2026/04/25 11:17:28 by alehamad         ###   ########.fr       */
 /*                                                                            */
@@ -12,17 +15,18 @@
 
 #include "cube.h"
 
-static void	err_clean(t_game *game)
+
+static void	err_clean(t_game *game, t_arg *arg)
 {
 	err_msg("Invalid player count");
-	clean_exit_game(game);
+	clean_exit_game(game, arg);
 }
 
 static void	init_map(t_game *game, t_arg *arg)
 {
-	int	i;
-	int	len;
-	int	max;
+	int i;
+	int len;
+	int max;
 
 	i = 0;
 	max = 0;
@@ -47,11 +51,11 @@ static void	handle_player(t_game *game, int i, int j, char c)
 	game->map.map[i][j] = '0';
 }
 
-static void	init_player(t_game *game)
+static void	init_player(t_game *game, t_arg *arg)
 {
-	int	i;
-	int	j;
-	int	count;
+	int i;
+	int j;
+	int count;
 
 	i = -1;
 	count = 0;
@@ -60,10 +64,8 @@ static void	init_player(t_game *game)
 		j = 0;
 		while (game->map.map[i][j])
 		{
-			if (game->map.map[i][j] == 'N'
-				|| game->map.map[i][j] == 'S'
-				|| game->map.map[i][j] == 'W'
-				|| game->map.map[i][j] == 'E')
+			if (game->map.map[i][j] == 'N' || game->map.map[i][j] == 'S'
+				|| game->map.map[i][j] == 'W' || game->map.map[i][j] == 'E')
 			{
 				if (count == 0)
 					handle_player(game, i, j, game->map.map[i][j]);
@@ -73,12 +75,12 @@ static void	init_player(t_game *game)
 		}
 	}
 	if (count != 1)
-		err_clean(game);
+		err_clean(game, arg);
 }
 
 void	init_game(t_game *game, t_arg *arg)
 {
 	init_colors(game, arg);
 	init_map(game, arg);
-	init_player(game);
+	init_player(game, arg);
 }
