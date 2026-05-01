@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 22:00:50 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/19 22:00:50 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/05/01 16:36:48 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ static void	remove_nl(char *line)
 
 static int	all_set(t_arg *data)
 {
-	return (data->no && data->so && data->we && data->ea
-		&& data->map && data->f_defined && data->c_defined);
+	return (data->no && data->so && data->we && data->ea && data->map
+		&& data->f_defined && data->c_defined);
 }
 
 static void	parsing_helper(char *line, t_arg *data)
@@ -96,7 +96,13 @@ int	parsing(char *file, t_arg *data)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	if (!all_set(data))
+	if (!all_set(data) || !validate_map(data))
+	{
+		if (!all_set(data))
+			err_msg("Missing elements (Textures/Colors/Map)");
+		else
+			err_msg("Invalid map (Not closed or multiple players)");
 		return (0);
+	}
 	return (1);
 }
