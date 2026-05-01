@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 13:15:42 by alehamad          #+#    #+#             */
-/*   Updated: 2026/05/01 03:15:28 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/05/01 17:20:52 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		return (1);
+	ft_bzero(&game, sizeof(t_game));
 	if (!pre_parse(av[1]))
 		return (1);
 	data = init_arg();
