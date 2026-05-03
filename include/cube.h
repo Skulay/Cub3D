@@ -195,5 +195,9 @@ void	print_data(t_arg *data);
 
 //render
 int		render_frame(t_game *game);
+int		raycast(t_game *g);
+void	draw_column(t_game *g, int x);
+void	calc_wall(t_game *g);
+void	put_pixel(t_img *img, int x, int y, int color);
 
 #endif
