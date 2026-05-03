@@ -78,7 +78,7 @@ void	dda(t_game *g)
 		}
 		if (g->ray.map_x < 0 || g->ray.map_x >= g->map.map_width
 			|| g->ray.map_y < 0 || g->ray.map_y >= g->map.map_height)
-			break;
+			break ;
 		if (g->map.map[g->ray.map_y][g->ray.map_x] == '1')
 			g->ray.hit = 1;
 	}
@@ -88,11 +88,10 @@ void	calc_wall(t_game *g)
 {
 	if (g->ray.side == 0)
 		g->ray.perpwalldist = (g->ray.map_x - g->player.pos_x
-			+ (1 - g->ray.step_x) / 2) / g->ray.raydir_x;
+				+ (1 - g->ray.step_x) / 2) / g->ray.raydir_x;
 	else
 		g->ray.perpwalldist = (g->ray.map_y - g->player.pos_y
-			+ (1 - g->ray.step_y) / 2) / g->ray.raydir_y;
-
+				+ (1 - g->ray.step_y) / 2) / g->ray.raydir_y;
 	g->ray.line_height = (int)(HEIGHT / g->ray.perpwalldist);
 	g->ray.draw_start = -g->ray.line_height / 2 + HEIGHT / 2;
 	if (g->ray.draw_start < 0)

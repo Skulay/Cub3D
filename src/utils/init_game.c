@@ -15,7 +15,6 @@
 
 #include "cube.h"
 
-
 static void	err_clean(t_game *game, t_arg *arg)
 {
 	err_msg("Invalid player count");
@@ -24,9 +23,9 @@ static void	err_clean(t_game *game, t_arg *arg)
 
 static void	init_map(t_game *game, t_arg *arg)
 {
-	int i;
-	int len;
-	int max;
+	int	i;
+	int	len;
+	int	max;
 
 	i = 0;
 	max = 0;
@@ -53,9 +52,9 @@ static void	handle_player(t_game *game, int i, int j, char c)
 
 static void	init_player(t_game *game, t_arg *arg)
 {
-	int i;
-	int j;
-	int count;
+	int	i;
+	int	j;
+	int	count;
 
 	i = -1;
 	count = 0;
