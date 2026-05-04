@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 13:15:42 by alehamad          #+#    #+#             */
-/*   Updated: 2026/05/02 01:10:32 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/05/04 16:53:28 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int	main(int ac, char **av)
 	t_game	game;
 
 	if (ac != 2)
+	{
+		err_msg("./cub3D \"/path/map.cub\"");
 		return (1);
+	}
 	ft_bzero(&game, sizeof(t_game));
 	if (!pre_parse(av[1]))
 		return (1);

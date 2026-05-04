@@ -1,4 +1,4 @@
-NAME = cub3d
+NAME = cub3D
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 
@@ -20,6 +20,7 @@ SRCS = main.c \
 	$(SRC_DIR)/parsing/parse_texture.c \
 	$(SRC_DIR)/parsing/parse_map.c \
 	$(SRC_DIR)/parsing/parsing.c \
+	$(SRC_DIR)/parsing/utils.c \
 	$(SRC_DIR)/check_cub_file/check_cub.c \
 	$(SRC_DIR)/check_cub_file/pre_parsing.c \
 	$(SRC_DIR)/msg_error/msg_error.c \

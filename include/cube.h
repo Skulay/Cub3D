@@ -162,6 +162,9 @@ int		parse_texture(char *line, t_arg *data);
 int		parse_color(char *line, t_arg *data);
 int		add_to_map(char *line, t_arg *data);
 int		validate_map(t_arg *data);
+int		is_only_spaces(char *line);
+void	remove_nl(char *line);
+int		all_set(t_arg *data);
 
 // init
 t_arg	*init_arg(void);

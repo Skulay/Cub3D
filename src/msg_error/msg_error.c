@@ -24,6 +24,6 @@ void	err_cub_format(void)
 
 void	err_msg(char *msg)
 {
-	ft_putendl_fd("Error:", 2);
+	ft_putendl_fd("Error", 2);
 	ft_putendl_fd(msg, 2);
 }
