@@ -2,9 +2,12 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
 /*   Created: 2026/04/25 11:17:28 by alehamad          #+#    #+#             */
 /*   Updated: 2026/04/25 11:17:28 by alehamad         ###   ########.fr       */
 /*                                                                            */
@@ -12,15 +15,10 @@
 
 #include "cube.h"
 
-static int	rgb_to_int(int rgb[3])
+static void	err_clean(t_game *game, t_arg *arg)
 {
-	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
-}
-
-static void	init_colors(t_game *game, t_arg *arg)
-{
-	game->floor_color = rgb_to_int(arg->f_color);
-	game->ceiling_color = rgb_to_int(arg->c_color);
+	err_msg("Invalid player count");
+	clean_exit_game(game, arg);
 }
 
 static void	init_map(t_game *game, t_arg *arg)
@@ -44,82 +42,44 @@ static void	init_map(t_game *game, t_arg *arg)
 	game->map.map_width = max;
 }
 
-static void	set_direction(t_game *game, char c)
+static void	handle_player(t_game *game, int i, int j, char c)
 {
-	if (c == 'N')
-	{
-		game->player.dir_x = 0;
-		game->player.dir_y = -1;
-		game->player.plan_x = 0.66;
-		game->player.plan_y = 0;
-	}
-	else if (c == 'S')
-	{
-		game->player.dir_x = 0;
-		game->player.dir_y = 1;
-		game->player.plan_x = -0.66;
-		game->player.plan_y = 0;
-	}
-	else if (c == 'E')
-	{
-		game->player.dir_x = 1;
-		game->player.dir_y = 0;
-		game->player.plan_x = 0;
-		game->player.plan_y = 0.66;
-	}
-	else if (c == 'W')
-	{
-		game->player.dir_x = -1;
-		game->player.dir_y = 0;
-		game->player.plan_x = 0;
-		game->player.plan_y = -0.66;
-	}
+	game->player.pos_x = j + 0.5;
+	game->player.pos_y = i + 0.5;
+	set_direction(game, c);
+	game->map.map[i][j] = '0';
 }
 
-static void	init_player(t_game *game)
+static void	init_player(t_game *game, t_arg *arg)
 {
-	int		i;
-	int		j;
-	char	c;
-	int		count;
+	int	i;
+	int	j;
+	int	count;
 
-	i = 0;
+	i = -1;
 	count = 0;
-	while (game->map.map[i])
+	while (game->map.map[++i])
 	{
 		j = 0;
 		while (game->map.map[i][j])
 		{
-			c = game->map.map[i][j];
-			if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+			if (game->map.map[i][j] == 'N' || game->map.map[i][j] == 'S'
+				|| game->map.map[i][j] == 'W' || game->map.map[i][j] == 'E')
 			{
 				if (count == 0)
-				{
-					game->player.pos_x = j + 0.5;
-					game->player.pos_y = i + 0.5;
-					set_direction(game, c);
-					game->map.map[i][j] = '0';
-				}
+					handle_player(game, i, j, game->map.map[i][j]);
 				count++;
 			}
 			j++;
 		}
-		i++;
 	}
 	if (count != 1)
-	{
-		err_msg("Only one player is accepted");
-		clean_exit_game(game);
-	}
-	else if (count == 1)
-		return ;
-	err_msg("Player not found");
-	clean_exit_game(game);
+		err_clean(game, arg);
 }
 
 void	init_game(t_game *game, t_arg *arg)
 {
 	init_colors(game, arg);
 	init_map(game, arg);
-	init_player(game);
+	init_player(game, arg);
 }

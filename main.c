@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 13:15:42 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/28 02:31:35 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/05/04 16:53:28 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,19 @@ int	main(int ac, char **av)
 	t_game	game;
 
 	if (ac != 2)
+	{
+		err_msg("./cub3D \"/path/map.cub\"");
 		return (1);
+	}
+	ft_bzero(&game, sizeof(t_game));
 	if (!pre_parse(av[1]))
 		return (1);
 	data = init_arg();
 	if (!parsing(av[1], data))
+	{
+		free_arg(data);
 		return (1);
-	print_data(data);
+	}
 	init_all(&game, data);
 	free_arg(data);
 	mlx_hook(game.mlx.win, 2, 1L << 0, key_handler, &game);

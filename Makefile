@@ -1,4 +1,4 @@
-NAME = cub3d
+NAME = cub3D
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 
@@ -10,22 +10,28 @@ MLX_DIR = minilibx-linux
 MLX_REPO = https://github.com/42Paris/minilibx-linux.git
 
 SRCS = main.c \
-	$(SRC_DIR)/free_util.c \
+	$(SRC_DIR)/utils/free_util.c \
 	$(SRC_DIR)/utils/init_parse_struct.c \
 	$(SRC_DIR)/utils/init_game.c \
 	$(SRC_DIR)/utils/init_all.c \
+	$(SRC_DIR)/utils/init_util.c \
+	$(SRC_DIR)/utils/set_dir.c \
 	$(SRC_DIR)/parsing/parse_colors.c \
 	$(SRC_DIR)/parsing/parse_texture.c \
 	$(SRC_DIR)/parsing/parse_map.c \
 	$(SRC_DIR)/parsing/parsing.c \
+	$(SRC_DIR)/parsing/utils.c \
 	$(SRC_DIR)/check_cub_file/check_cub.c \
 	$(SRC_DIR)/check_cub_file/pre_parsing.c \
 	$(SRC_DIR)/msg_error/msg_error.c \
 	$(SRC_DIR)/render/render.c \
+	$(SRC_DIR)/render/raycasting.c \
+	$(SRC_DIR)/render/wall.c \
 	$(SRC_DIR)/debug/debug.c \
 	$(SRC_DIR)/free/free_game.c \
 	$(SRC_DIR)/hook/hook_input.c \
 	$(SRC_DIR)/hook/rotate.c \
+	$(SRC_DIR)/hook/move.c \
 	$(SRC_DIR)/parsing/check_map.c
 
 OBJS = $(SRCS:.c=.o)

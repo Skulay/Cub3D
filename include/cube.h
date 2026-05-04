@@ -18,19 +18,20 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-#include <math.h>
+# include <math.h>
 
 # define HEIGHT 800
 # define WIDTH 800
 # define MAX_MAP_SIZE 1000
+# define MOVE_SPEED 0.05
 
 # define ESC 65307
 # define LEFT 65361
 # define RIGHT 65363
-# define UP 65362
-# define DOWN 65364
-# define WHEELUP 4
-# define WHEELDOWN 5
+# define W 119
+# define A 97
+# define S 115
+# define D 100
 
 // Parsing
 typedef struct s_check
@@ -161,19 +162,29 @@ int		parse_texture(char *line, t_arg *data);
 int		parse_color(char *line, t_arg *data);
 int		add_to_map(char *line, t_arg *data);
 int		validate_map(t_arg *data);
+int		is_only_spaces(char *line);
+void	remove_nl(char *line);
+int		all_set(t_arg *data);
 
 // init
 t_arg	*init_arg(void);
 void	init_game(t_game *game, t_arg *arg);
 void	init_all(t_game *game, t_arg *arg);
+void	set_direction(t_game *game, char c);
+void	init_colors(t_game *game, t_arg *arg);
+void	set_direction(t_game *game, char c);
 
 //hook
-int	key_handler(int keycode, t_game *game);
+int		key_handler(int keycode, t_game *game);
 void	rotate_right(t_player *p);
 void	rotate_left(t_player *p);
+void	move_w(t_player *player, t_map *map);
+void	move_a(t_player *player, t_map *map);
+void	move_s(t_player *player, t_map *map);
+void	move_d(t_player *player, t_map *map);
 
 //free & error msg
-void	clean_exit_game(t_game *game);
+void	clean_exit_game(t_game *game, t_arg *data);
 void	err_msg(char *msg);
 void	free_arg(t_arg *data);
 void	err_cub_format(void);
@@ -185,6 +196,11 @@ int		handle_close(t_game *game);
 //debug
 void	print_data(t_arg *data);
 
+//render
 int		render_frame(t_game *game);
+int		raycast(t_game *g);
+void	draw_column(t_game *g, int x);
+void	calc_wall(t_game *g);
+void	put_pixel(t_img *img, int x, int y, int color);
 
 #endif

@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   free_util.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 15:46:06 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/27 14:59:21 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/05/02 01:41:26 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	clean_exit_game(t_game *game)
+void	clean_exit_game(t_game *game, t_arg *data)
 {
-	if (1 < 0)
-		free(game);
+	if (data)
+		free_arg(data);
+	free_game(game);
+	exit(1);
 }
 
 void	free_close(char *line, int fd)

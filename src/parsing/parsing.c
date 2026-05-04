@@ -6,48 +6,11 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 22:00:50 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/19 22:00:50 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/05/04 16:46:17 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
-
-static int	is_only_spaces(char *line)
-{
-	int	i;
-
-	i = 0;
-	if (!line)
-		return (1);
-	while (line[i])
-	{
-		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-static void	remove_nl(char *line)
-{
-	int	i;
-
-	i = 0;
-	if (!line || line[0] == '\0')
-		return ;
-	while (line[i])
-	{
-		if (line[i] == '\n' || line[i] == '\r' || line[i] < 32)
-			line[i] = '\0';
-		i++;
-	}
-}
-
-static int	all_set(t_arg *data)
-{
-	return (data->no && data->so && data->we && data->ea
-		&& data->map && data->f_defined && data->c_defined);
-}
 
 static void	parsing_helper(char *line, t_arg *data)
 {
@@ -57,6 +20,23 @@ static void	parsing_helper(char *line, t_arg *data)
 		parse_color(line, data);
 	else if (is_map_line(line))
 		add_to_map(line, data);
+}
+
+static int	handle_line(char *line, t_arg *data, int *map_started)
+{
+	if (is_only_spaces(line))
+		return (!*map_started);
+	if (!*map_started && is_map_line(line))
+		*map_started = 1;
+	if (*map_started)
+	{
+		if (!is_map_line(line))
+			return (0);
+		add_to_map(line, data);
+	}
+	else
+		parsing_helper(line, data);
+	return (1);
 }
 
 int	parsing(char *file, t_arg *data)
@@ -71,32 +51,16 @@ int	parsing(char *file, t_arg *data)
 	while (line)
 	{
 		remove_nl(line);
-		if (map_started && is_only_spaces(line))
+		if (!handle_line(line, data, &map_started))
 			return (free_close(line, fd), 0);
-		if (!is_only_spaces(line))
-		{
-			if (!map_started)
-			{
-				if (is_map_line(line))
-				{
-					map_started = 1;
-					add_to_map(line, data);
-				}
-				else
-					parsing_helper(line, data);
-			}
-			else
-			{
-				if (!is_map_line(line))
-					return (free_close(line, fd), 0);
-				add_to_map(line, data);
-			}
-		}
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
-	if (!all_set(data))
+	if (!all_set(data) || !validate_map(data))
+	{
+		err_msg("Invalid map or elements");
 		return (0);
+	}
 	return (1);
 }

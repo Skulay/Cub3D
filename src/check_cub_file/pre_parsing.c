@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pre_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 13:20:18 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/29 02:45:00 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/05/04 01:35:17 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,30 +27,25 @@ int	check_cub_file(int fd, t_check *c)
 	int		map_started;
 
 	map_started = 0;
-	line = get_next_line(fd);
-	while (line)
+	while (1)
 	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
 		if (is_not_empty_line(line))
 		{
 			if (!check_id(c))
 			{
-				if (check_map_line(line))
-					return (finish_file(fd, line), 0);
-				if (!is_id_valid(skip_spaces(line), c))
+				if (check_map_line(line) || !is_id_valid(skip_spaces(line), c))
 					return (finish_file(fd, line), 0);
 			}
+			else if (!map_started && check_map_line(line))
+				map_started = 1;
 			else if (!map_started)
-			{
-				if (check_map_line(line))
-					map_started = 1;
-				else
-					return (finish_file(fd, line), 0);
-			}
+				return (finish_file(fd, line), 0);
 		}
 		free(line);
-		line = get_next_line(fd);
 	}
-	free(line);
 	return (check_id(c) && map_started);
 }
 
@@ -64,7 +59,7 @@ int	pre_parse(char *file)
 	if (fd < 0)
 	{
 		perror("Error\nopening file");
-		return (1);
+		return (0);
 	}
 	if (!check_cub_file(fd, &c))
 	{
