@@ -3,21 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 13:15:42 by alehamad          #+#    #+#             */
-/*   Updated: 2026/05/04 16:53:28 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/05/07 20:29:18 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+
+static int	validate_extension(char *filename)
+{
+	int	i;
+
+	i = ft_strlen(filename);
+	if (i <= 4)
+		return (1);
+	if (filename[--i] != 'b' || filename[--i] != 'u' || filename[--i] != 'c'
+		|| filename[--i] != '.')
+		return (1);
+	return (0);
+}
 
 int	main(int ac, char **av)
 {
 	t_arg	*data;
 	t_game	game;
 
-	if (ac != 2)
+	if (ac != 2 || validate_extension(av[1]))
 	{
 		err_msg("./cub3D \"/path/map.cub\"");
 		return (1);
