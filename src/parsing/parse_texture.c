@@ -2,24 +2,20 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parse_texture.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
-	+:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+      
-	+#+        */
-/*                                                +#+#+#+#+#+  
-	+#+           */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 07:30:08 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/20 07:30:08 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/05/13 01:45:43 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-
 int	is_texture(char *line)
 {
-	const char *textures[] = {"NO ", "SO ", "WE ", "EA "};
-	int i;
+	const char	*textures[] = {"NO ", "SO ", "WE ", "EA "};
+	int			i;
 
 	i = 0;
 	while (i < 4)
@@ -33,7 +29,7 @@ int	is_texture(char *line)
 
 static int	is_valid(char *line)
 {
-	int i;
+	int	i;
 
 	i = 3;
 	while (line[i] == ' ' || line[i] == '\t')
@@ -55,8 +51,8 @@ static int	is_valid(char *line)
 
 static int	add_texture(char *line, t_arg *data)
 {
-	char *texture_path;
-	char *dup_texture_path;
+	char	*texture_path;
+	char	*dup_texture_path;
 
 	if (!line)
 		return (0);
@@ -66,8 +62,6 @@ static int	add_texture(char *line, t_arg *data)
 	dup_texture_path = ft_strdup(texture_path);
 	if (!dup_texture_path)
 		return (0);
-	while (*dup_texture_path == ' ' || *dup_texture_path == '\t')
-		dup_texture_path++;
 	if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ' && !data->no)
 		data->no = dup_texture_path;
 	else if (line[0] == 'S' && line[1] == 'O' && line[2] == ' ' && !data->so)
