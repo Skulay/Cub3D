@@ -2,9 +2,12 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parse_texture.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
 /*   Created: 2026/04/20 07:30:08 by alehamad          #+#    #+#             */
 /*   Updated: 2026/04/20 07:30:08 by alehamad         ###   ########.fr       */
 /*                                                                            */
@@ -12,10 +15,11 @@
 
 #include "cube.h"
 
+
 int	is_texture(char *line)
 {
-	const char	*textures[] = {"NO ", "SO ", "WE ", "EA "};
-	int			i;
+	const char *textures[] = {"NO ", "SO ", "WE ", "EA "};
+	int i;
 
 	i = 0;
 	while (i < 4)
@@ -29,7 +33,7 @@ int	is_texture(char *line)
 
 static int	is_valid(char *line)
 {
-	int	i;
+	int i;
 
 	i = 3;
 	while (line[i] == ' ' || line[i] == '\t')
@@ -51,12 +55,14 @@ static int	is_valid(char *line)
 
 static int	add_texture(char *line, t_arg *data)
 {
-	char	*texture_path;
-	char	*dup_texture_path;
+	char *texture_path;
+	char *dup_texture_path;
 
 	if (!line)
 		return (0);
 	texture_path = &line[3];
+	while (*texture_path == ' ' || *texture_path == '\t')
+		texture_path++;
 	dup_texture_path = ft_strdup(texture_path);
 	if (!dup_texture_path)
 		return (0);
