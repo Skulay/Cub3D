@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 07:30:54 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/20 07:30:54 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/05/13 02:25:33 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	is_map_line(char *line)
 
 int	add_to_map(char *line, t_arg *data)
 {
-	if (data->map_size >= MAX_MAP_SIZE)
+	if (data->map_size >= MAX_MAP_SIZE - 1)
 	{
 		err_msg("map is full");
 		return (0);
