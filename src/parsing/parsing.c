@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 22:00:50 by alehamad          #+#    #+#             */
-/*   Updated: 2026/05/04 16:46:17 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/05/26 22:58:09 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ static int	handle_line(char *line, t_arg *data, int *map_started)
 		parsing_helper(line, data);
 	return (1);
 }
+static void	purge_gnl_buffer(int fd, char *current_line)
+{
+	if (!current_line)
+		return ;
+	do
+	{
+		free(current_line);
+		current_line = get_next_line(fd);
+	} while (NULL != current_line);
+}
 
 int	parsing(char *file, t_arg *data)
 {
@@ -52,7 +62,10 @@ int	parsing(char *file, t_arg *data)
 	{
 		remove_nl(line);
 		if (!handle_line(line, data, &map_started))
-			return (free_close(line, fd), 0);
+		{
+			purge_gnl_buffer(fd, line);
+			return (close(fd), 0);
+		}
 		free(line);
 		line = get_next_line(fd);
 	}
