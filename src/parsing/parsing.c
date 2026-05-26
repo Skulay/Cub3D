@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 22:00:50 by alehamad          #+#    #+#             */
-/*   Updated: 2026/05/26 22:58:09 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/05/26 23:02:04 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,9 @@ static int	handle_line(char *line, t_arg *data, int *map_started)
 	{
 		if (!is_map_line(line))
 			return (0);
-		add_to_map(line, data);
+		return (add_to_map(line, data));
 	}
-	else
-		parsing_helper(line, data);
+	parsing_helper(line, data);
 	return (1);
 }
 static void	purge_gnl_buffer(int fd, char *current_line)
