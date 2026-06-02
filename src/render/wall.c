@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 01:20:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/06/02 05:57:35 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/06/02 06:03:30 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	calc_wall(t_game *g)
 					- g->ray.step_x) / 2) / g->ray.raydir_x;
 	else
 		g->ray.perpwalldist = (g->ray.map_y - g->player.pos_y + (1
-					- g->ray.step_y) / 2) / g->ray.raydir_y;	
+					- g->ray.step_y) / 2) / g->ray.raydir_y;
 	g->ray.line_height = (int)(HEIGHT / g->ray.perpwalldist);
 	if (g->ray.line_height <= 0)
 		g->ray.line_height = 1;

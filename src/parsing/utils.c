@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 16:45:55 by alehamad          #+#    #+#             */
-/*   Updated: 2026/05/04 16:45:55 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/06/02 06:02:37 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,11 @@ void	remove_nl(char *line)
 		return ;
 	while (line[i])
 	{
-		if (line[i] == '\n' || line[i] == '\r' || line[i] < 32)
+		if (line[i] == '\n' || line[i] == '\r')
+		{
 			line[i] = '\0';
+			break ;
+		}
 		i++;
 	}
 }
