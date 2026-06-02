@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 01:20:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/05/04 01:20:43 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/06/02 05:57:35 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 void	calc_wall(t_game *g)
 {
 	if (g->ray.side == 0)
-		g->ray.perpwalldist = (g->ray.map_x - g->player.pos_x
-				+ (1 - g->ray.step_x) / 2) / g->ray.raydir_x;
+		g->ray.perpwalldist = (g->ray.map_x - g->player.pos_x + (1
+					- g->ray.step_x) / 2) / g->ray.raydir_x;
 	else
-		g->ray.perpwalldist = (g->ray.map_y - g->player.pos_y
-				+ (1 - g->ray.step_y) / 2) / g->ray.raydir_y;
+		g->ray.perpwalldist = (g->ray.map_y - g->player.pos_y + (1
+					- g->ray.step_y) / 2) / g->ray.raydir_y;	
 	g->ray.line_height = (int)(HEIGHT / g->ray.perpwalldist);
+	if (g->ray.line_height <= 0)
+		g->ray.line_height = 1;
 	g->ray.draw_start = -g->ray.line_height / 2 + HEIGHT / 2;
 	if (g->ray.draw_start < 0)
 		g->ray.draw_start = 0;
@@ -53,8 +55,8 @@ static int	get_tex_x(t_game *g, t_texture *tex)
 		wall_x = g->player.pos_x + g->ray.perpwalldist * g->ray.raydir_x;
 	wall_x -= floor(wall_x);
 	tex_x = (int)(wall_x * (double)tex->width);
-	if ((g->ray.side == 0 && g->ray.raydir_x > 0)
-		|| (g->ray.side == 1 && g->ray.raydir_y < 0))
+	if ((g->ray.side == 0 && g->ray.raydir_x > 0) || (g->ray.side == 1
+			&& g->ray.raydir_y < 0))
 		tex_x = tex->width - tex_x - 1;
 	return (tex_x);
 }
