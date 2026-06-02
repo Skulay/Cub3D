@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 22:00:50 by alehamad          #+#    #+#             */
-/*   Updated: 2026/05/26 23:02:04 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/06/02 05:57:22 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,16 @@ static int	handle_line(char *line, t_arg *data, int *map_started)
 	parsing_helper(line, data);
 	return (1);
 }
+
 static void	purge_gnl_buffer(int fd, char *current_line)
 {
 	if (!current_line)
 		return ;
-	do
+	while (NULL != current_line)
 	{
 		free(current_line);
 		current_line = get_next_line(fd);
-	} while (NULL != current_line);
+	}
 }
 
 int	parsing(char *file, t_arg *data)
