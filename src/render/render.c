@@ -31,3 +31,10 @@ int	render_frame(t_game *game)
 		);
 	return (0);
 }
+
+int	game_loop(t_game *game)
+{
+	key_handler(game);
+	render_frame(game);
+	return (0);
+}

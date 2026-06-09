@@ -18,7 +18,7 @@ void	rotate_left(t_player *p)
 	double	old_plan_x;
 	double	rot;
 
-	rot = -0.05;
+	rot = -ROT_SPEED;
 	old_dir_x = p->dir_x;
 	p->dir_x = p->dir_x * cos(rot) - p->dir_y * sin(rot);
 	p->dir_y = old_dir_x * sin(rot) + p->dir_y * cos(rot);
@@ -33,7 +33,7 @@ void	rotate_right(t_player *p)
 	double	old_plan_x;
 	double	rot;
 
-	rot = 0.05;
+	rot = ROT_SPEED;
 	old_dir_x = p->dir_x;
 	p->dir_x = p->dir_x * cos(rot) - p->dir_y * sin(rot);
 	p->dir_y = old_dir_x * sin(rot) + p->dir_y * cos(rot);
