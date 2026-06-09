@@ -3,6 +3,8 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 
 INC_DIR = include
+HEADER = $(INC_DIR)/cube.h
+
 SRC_DIR = src
 
 LIBFT_DIR = libft
@@ -35,37 +37,36 @@ SRCS = main.c \
 	$(SRC_DIR)/parsing/check_map.c
 
 OBJS = $(SRCS:.c=.o)
-DEPS = $(OBJS:.o=.d)
-
--include $(DEPS)
 
 all: $(NAME)
 
 $(NAME): $(MLX_DIR) $(OBJS)
-	make -C ./$(LIBFT_DIR)
-	make -C ./$(MLX_DIR)
+	$(MAKE) -C $(LIBFT_DIR)
+	$(MAKE) -C $(MLX_DIR)
 	$(CC) $(CFLAGS) $(OBJS) \
-		-L./$(LIBFT_DIR) -lft \
-		-L./$(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm -lz \
+		-L$(LIBFT_DIR) -lft \
+		-L$(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm -lz \
 		-o $(NAME)
 
 $(MLX_DIR):
 	git clone $(MLX_REPO) $(MLX_DIR)
 
+$(OBJS): $(HEADER)
+
 %.o: %.c
-	$(CC) $(CFLAGS) -I$(INC_DIR) -I./$(LIBFT_DIR) -I./$(MLX_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR) \
+		-c $< -o $@
 
 clean:
-	rm -f $(OBJS) $(DEPS)
-	make -C ./$(LIBFT_DIR) clean
-	make -C ./$(MLX_DIR) clean
+	rm -f $(OBJS)
+	$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(MLX_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
-	make -C ./$(LIBFT_DIR) fclean
+	$(MAKE) -C $(LIBFT_DIR) fclean
 	rm -rf $(MLX_DIR)
 
-re: fclean 
-	make all
+re: fclean all
 
 .PHONY: all clean fclean re
