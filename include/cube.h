@@ -23,7 +23,8 @@
 # define HEIGHT 800
 # define WIDTH 800
 # define MAX_MAP_SIZE 1000
-# define MOVE_SPEED 0.05
+# define MOVE_SPEED 0.005
+# define ROT_SPEED 0.005
 
 # define ESC 65307
 # define LEFT 65361
@@ -132,6 +133,16 @@ typedef struct s_ray
 	int		draw_end;
 }	t_ray;
 
+typedef struct s_key
+{
+	int	w;
+	int	a;
+	int	s;
+	int	d;
+	int	left;
+	int	right;
+}	t_key;
+
 typedef struct s_game
 {
 	t_player	player;
@@ -140,6 +151,7 @@ typedef struct s_game
 	t_tex		tex;
 	t_map		map;
 	t_ray		ray;
+	t_key		key;
 	int			floor_color;
 	int			ceiling_color;
 }	t_game;
@@ -175,7 +187,9 @@ void	init_colors(t_game *game, t_arg *arg);
 void	set_direction(t_game *game, char c);
 
 //hook
-int		key_handler(int keycode, t_game *game);
+int		key_press(int keycode, t_game *game);
+int		key_release(int keycode, t_game *game);
+int		key_handler(t_game *game);
 void	rotate_right(t_player *p);
 void	rotate_left(t_player *p);
 void	move_w(t_player *player, t_map *map);
@@ -197,6 +211,7 @@ int		handle_close(t_game *game);
 void	print_data(t_arg *data);
 
 //render
+int		game_loop(t_game *game);
 int		render_frame(t_game *game);
 int		raycast(t_game *g);
 void	draw_column(t_game *g, int x);

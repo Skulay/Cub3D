@@ -82,4 +82,5 @@ void	init_game(t_game *game, t_arg *arg)
 	init_colors(game, arg);
 	init_map(game, arg);
 	init_player(game, arg);
+	ft_bzero(&game->key, sizeof(t_key));
 }
