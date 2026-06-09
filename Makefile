@@ -65,6 +65,7 @@ fclean: clean
 	make -C ./$(LIBFT_DIR) fclean
 	rm -rf $(MLX_DIR)
 
-re: fclean all
+re: fclean 
+	make all
 
 .PHONY: all clean fclean re
