@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 07:30:08 by alehamad          #+#    #+#             */
-/*   Updated: 2026/04/20 07:30:08 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/05/13 01:45:43 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ static int	add_texture(char *line, t_arg *data)
 	if (!line)
 		return (0);
 	texture_path = &line[3];
+	while (*texture_path == ' ' || *texture_path == '\t')
+		texture_path++;
 	dup_texture_path = ft_strdup(texture_path);
 	if (!dup_texture_path)
 		return (0);
-	while (*dup_texture_path == ' ' || *dup_texture_path == '\t')
-		dup_texture_path++;
 	if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ' && !data->no)
 		data->no = dup_texture_path;
 	else if (line[0] == 'S' && line[1] == 'O' && line[2] == ' ' && !data->so)
