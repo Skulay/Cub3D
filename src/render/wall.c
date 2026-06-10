@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 01:20:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/06/02 06:03:30 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/06/10 19:42:48 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ static t_texture	*get_tex(t_game *g)
 	if (g->ray.side == 0)
 	{
 		if (g->ray.raydir_x > 0)
-			return (&g->tex.west);
-		return (&g->tex.east);
+			return (&g->tex.east);
+		return (&g->tex.west);
 	}
 	if (g->ray.raydir_y > 0)
-		return (&g->tex.north);
-	return (&g->tex.south);
+		return (&g->tex.south);
+	return (&g->tex.north);
 }
 
 static int	get_tex_x(t_game *g, t_texture *tex)
