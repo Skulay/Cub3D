@@ -45,7 +45,7 @@ t_arg	*init_arg(void)
 	data->f_defined = 0;
 	data->c_defined = 0;
 	data->map_size = 0;
-	data->map = malloc(MAX_MAP_SIZE * sizeof(char *));
+	data->map = ft_calloc(MAX_MAP_SIZE, sizeof(char *));
 	if (!data->map)
 	{
 		free(data);
