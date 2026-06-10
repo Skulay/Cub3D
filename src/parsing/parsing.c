@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 22:00:50 by alehamad          #+#    #+#             */
-/*   Updated: 2026/06/02 06:16:15 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/06/10 18:17:17 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ int	parsing(char *file, t_arg *data)
 
 	map_status = 0;
 	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (err_msg("Error: could not open file"), 0);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -80,9 +82,6 @@ int	parsing(char *file, t_arg *data)
 	}
 	close(fd);
 	if (all_set(data) == 0 || validate_map(data) == 0)
-	{
-		err_msg("Invalid map or elements");
-		return (0);
-	}
+		return (err_msg("Invalid map or elements"), 0);
 	return (1);
 }
