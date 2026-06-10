@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 13:15:42 by alehamad          #+#    #+#             */
-/*   Updated: 2026/06/09 15:13:52 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/06/10 07:52:07 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int ac, char **av)
 	t_game	game;
 
 	if (ac != 2 || validate_extension(av[1]))
-		return(err_msg("./cub3D \"/path/map.cub\""), 1);
+		return (err_msg("./cub3D \"/path/map.cub\""), 1);
 	ft_bzero(&game, sizeof(t_game));
 	if (!pre_parse(av[1]))
 		return (1);
@@ -46,7 +46,8 @@ int	main(int ac, char **av)
 	init_all(&game, data);
 	free_arg(data);
 	mlx_hook(game.mlx.win, 2, 1L << 0, (int (*)(void))(void *)key_press, &game);
-	mlx_hook(game.mlx.win, 3, 1L << 1, (int (*)(void))(void *)key_release, &game);
+	mlx_hook(game.mlx.win, 3, 1L << 1, (int (*)(void))(void *)key_release,
+		&game);
 	mlx_hook(game.mlx.win, 17, 0, (int (*)(void))(void *)handle_close, &game);
 	mlx_loop_hook(game.mlx.mlx, (int (*)(void))(void *)game_loop, &game);
 	mlx_loop(game.mlx.mlx);
