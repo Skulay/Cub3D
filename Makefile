@@ -8,6 +8,7 @@ HEADER = $(INC_DIR)/cube.h
 SRC_DIR = src
 
 LIBFT_DIR = libft
+LIBFT_REPO = https://github.com/Skulay/libft.git
 MLX_DIR = minilibx-linux
 MLX_REPO = https://github.com/42Paris/minilibx-linux.git
 
@@ -40,7 +41,7 @@ OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(MLX_DIR) $(OBJS)
+$(NAME): $(LIBFT_DIR) $(MLX_DIR) $(OBJS)
 	$(MAKE) -C $(LIBFT_DIR)
 	$(MAKE) -C $(MLX_DIR)
 	$(CC) $(CFLAGS) $(OBJS) \
@@ -48,10 +49,13 @@ $(NAME): $(MLX_DIR) $(OBJS)
 		-L$(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm -lz \
 		-o $(NAME)
 
+$(LIBFT_DIR):
+	git clone $(LIBFT_REPO) $(LIBFT_DIR)
+
 $(MLX_DIR):
 	git clone $(MLX_REPO) $(MLX_DIR)
 
-$(OBJS): $(HEADER)
+$(OBJS): $(HEADER) | $(LIBFT_DIR) $(MLX_DIR)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR) \
@@ -59,13 +63,12 @@ $(OBJS): $(HEADER)
 
 clean:
 	rm -f $(OBJS)
-	$(MAKE) -C $(LIBFT_DIR) clean
-	$(MAKE) -C $(MLX_DIR) clean
+	if [ -d $(LIBFT_DIR) ]; then $(MAKE) -C $(LIBFT_DIR) clean; fi
+	if [ -d $(MLX_DIR) ]; then $(MAKE) -C $(MLX_DIR) clean; fi
 
 fclean: clean
 	rm -f $(NAME)
-	$(MAKE) -C $(LIBFT_DIR) fclean
-	rm -rf $(MLX_DIR)
+	rm -rf $(LIBFT_DIR) $(MLX_DIR)
 
 re: fclean all
 

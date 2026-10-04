@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 13:15:42 by alehamad          #+#    #+#             */
-/*   Updated: 2026/06/10 07:52:07 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/07/28 03:37:30 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ int	main(int ac, char **av)
 		return (1);
 	data = init_arg();
 	if (!data)
-		return (err_msg("Error\n Malloc failed"), 1);
+		return (err_msg("Malloc failed"), 1);
 	if (!parsing(av[1], data))
 	{
 		free_arg(data);
-		return (1);
+		return (err_msg("Parsing: Invalid map or elements"), 1);
 	}
 	init_all(&game, data);
 	free_arg(data);
